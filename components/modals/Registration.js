@@ -45,7 +45,6 @@ export default function RegistrationModal({ open, setOpen }) {
               <TabList
                 onChange={handleChange}
                 aria-label='Tabs example'
-                textColor='black'
                 centered
               >
                 <Tab
