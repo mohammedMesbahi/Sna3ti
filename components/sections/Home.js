@@ -1,6 +1,9 @@
 import { Box, Container, Typography, Button } from '@mui/material'
 import React from 'react'
+import RegistrationModal from '../modals/Registration';
 function Home() {
+    const [openRegistrationModal, setOpenRegistrationModal] = React.useState(false);
+
     return (
         <Container
             className='container1'
@@ -13,12 +16,12 @@ function Home() {
                 display: 'flex',
                 minHeight: '100vh',
                 minWidth: '100%',
-                alignItems:{
-                    xs:'center',
-                    md:'flex-start'
+                alignItems: {
+                    xs: 'center',
+                    md: 'flex-start'
                 },
-                paddingTop:{
-                    md:'30vh'
+                paddingTop: {
+                    md: '30vh'
                 },
                 background: `linear-gradient(45deg, rgb(0, 0, 0, 0.8),rgb(255, 234, 167,0.1)), url('/images/image5.jpg')`,
                 backgroundPosition: 'center',
@@ -33,17 +36,25 @@ function Home() {
                 <Typography variant='h3' component='h1' color={'inherit'}>
                     Moroccan handmade expert store
                 </Typography>
-                <Typography variant='h5' component={'p'} marginBottom={4} sx={{maxWidth:{md:'55%'}}}>
+                <Typography variant='h5' component={'p'} marginBottom={4} sx={{ maxWidth: { md: '55%' } }}>
                     The Moroccan handmade expert store, pre order and buy in wholesale
                     Moroccan handicrafts from the first artisans market in Morocco.
                 </Typography>
+
                 <Button size='large' variant="contained" sx={{
                     backgroundColor: '#fcb900', ":hover": {
                         color: 'white',
                         bgcolor: 'black'
                     }
-                }}>Join The Platform</Button>
+                }}
+                    onClick={() => setOpenRegistrationModal(true)}
+                >
+                    Join The Platform</Button>
             </Box>
+
+            <RegistrationModal open={openRegistrationModal} setOpen={setOpenRegistrationModal}>
+
+            </RegistrationModal>
         </Container >
     )
 }

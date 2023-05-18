@@ -22,6 +22,7 @@ const Navbar = () => {
                 md: 'row',
 
             },
+            cursor:'pointer'
         }} >
             <ListItem onClick={() => document.getElementById('home').scrollIntoView({ behavior: 'smooth' })}>
                 <ListItemText primary="Home" />
@@ -35,7 +36,7 @@ const Navbar = () => {
             <ListItem onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
                 <ListItemText primary="About" />
             </ListItem>
-            <ListItem >
+            <ListItem onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
                 <ListItemText primary="Contact" />
                 {/* <Link href="#contact" underline="hover" variant='body1'>
                     Contact
@@ -79,8 +80,9 @@ const Navbar = () => {
                 position: 'fixed',
                 top: 0,
                 opacity: 0.95,
-                width: '100vw'
-
+                width: '100vw',
+                zIndex: (theme) => theme.zIndex.drawer + 1
+                
             }}
             >
                 <Toolbar>
@@ -147,9 +149,7 @@ const Navbar = () => {
                         {drawerItems}
                     </Box>
                     <Button variant="contained" sx={{
-                        backgroundColor: '#fcb900', 
                             color: 'white',
-                            bgcolor: 'black',
                             minWidth: '100px'
                         
                     }}>Sign In</Button>
@@ -163,7 +163,8 @@ const Navbar = () => {
                 anchor="top"
                 open={open}
                 onClose={handleDrawerToggle}
-                sx={{ width: 240, flexShrink: 0, alignItems: 'center', justifyContent: 'center' }}
+                sx={{ width: 240, flexShrink: 0, alignItems: 'center', justifyContent: 'center' ,top:'6vh'}}
+
 
             >
                 <div sx={{ width: 240 }}>
