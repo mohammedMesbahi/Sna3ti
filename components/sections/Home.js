@@ -52,7 +52,7 @@ function Home() {
                     Join The Platform</Button>
             </Box>
 
-            <RegistrationModal open={openRegistrationModal} setOpen={setOpenRegistrationModal}>
+            <RegistrationModal isOpen={openRegistrationModal} setIsOpen={setOpenRegistrationModal}>
 
             </RegistrationModal>
         </Container >
