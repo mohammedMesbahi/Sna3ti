@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { TextField, Button, Grid, Stack, Typography } from "@mui/material";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 const HandiCraftRegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [verificationCode, setVerificationCode] = useState('');
@@ -135,15 +139,29 @@ const UserDetailsForm = ({ onSubmit, setStep }) => {
 
         {/* craft */}
         <Grid item xs={12} md={6}>
-          <TextField
+          {/* <TextField
             name="craft"
             label="craft"
-            required
+            
             fullWidth
             size="small"
             //TODO: remove the default value
             defaultValue="Carpenter"
-          />
+          /> */}
+          <FormControl required fullWidth size='small'>
+            <InputLabel id="demo-simple-select-label">Craft</InputLabel>
+            <Select
+            name="craft"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={20}
+              label="craft"
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
 
         {/* address */}
@@ -235,7 +253,7 @@ const VerificationForm = ({ onSubmit, phoneNumber }) => {
         <Grid item xs={12}>
           <Alert severity="success">
             <AlertTitle>Success</AlertTitle>
-            A verification code has been sent to the phone number 
+            A verification code has been sent to the phone number
             <strong> {phoneNumber}</strong>
           </Alert>
         </Grid>
