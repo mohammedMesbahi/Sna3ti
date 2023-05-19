@@ -5,6 +5,8 @@
 
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/3aadbb18-71af-44ee-b1c7-4b2ae566f5e3)
 
+![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/e32fceaa-86a5-4dbb-a8c0-a641aadfebcf)
+
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/350e2b12-90af-4c56-85f0-c846f1f64d6a)
 
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/c6869f9d-168f-4b7b-b228-41e3c3baa4e9)
