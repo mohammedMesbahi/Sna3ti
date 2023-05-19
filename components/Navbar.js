@@ -1,12 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem, ListItemText, useMediaQuery, Box, Grid } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem, ListItemText, Box, Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
-import Link from 'next/link';
+import SignInModal from './modals/SignInModal';
 const Navbar = () => {
-    const router = useRouter();
     const [open, setOpen] = React.useState(false);
+    const [openSignIn, setOpenSignIn] = React.useState(false);
 
     const handleDrawerToggle = () => {
         setOpen(!open);
@@ -22,7 +22,7 @@ const Navbar = () => {
                 md: 'row',
 
             },
-            cursor:'pointer'
+            cursor: 'pointer'
         }} >
             <ListItem onClick={() => document.getElementById('home').scrollIntoView({ behavior: 'smooth' })}>
                 <ListItemText primary="Home" />
@@ -78,32 +78,29 @@ const Navbar = () => {
                 bgcolor: 'white',
                 color: 'black',
                 position: 'fixed',
-                top: 0,
                 opacity: 0.95,
-                width: '100vw',
                 zIndex: (theme) => theme.zIndex.drawer + 1
-                
+
             }}
             >
                 <Toolbar>
 
-                    <Box sx={{
-                        display: {
-                            xs: 'block',
-                            sm: 'block',
-                            md: 'none'
-                        }
-                    }} >
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                            sx={{ marginRight: (theme) => theme.spacing(2) }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    </Box>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{
+                            marginRight: (theme) => theme.spacing(2), display: {
+                                xs: 'block',
+                                sm: 'block',
+                                md: 'none'
+                            }
+                        }}
+
+                    >
+                        <MenuIcon />
+                    </IconButton>
 
                     <Grid
                         container
@@ -148,12 +145,12 @@ const Navbar = () => {
                     }} >
                         {drawerItems}
                     </Box>
-                    <Button variant="contained" sx={{
-                            color: 'white',
-                            minWidth: '100px'
-                        
-                    }}>Sign In</Button>
-                    {/* <Button color="inherit" sx={{ bgcolor: '#e1a95f', minWidth: '100px' }} size="medium">Sign In</Button> */}
+                    <Button
+                        variant="contained"
+                        sx={{ color: 'white', minWidth: '100px' }}
+                        onClick={() => setOpenSignIn(true)}
+                    >Sign In</Button>
+
                 </Toolbar>
 
             </AppBar >
@@ -163,7 +160,7 @@ const Navbar = () => {
                 anchor="top"
                 open={open}
                 onClose={handleDrawerToggle}
-                sx={{ width: 240, flexShrink: 0, alignItems: 'center', justifyContent: 'center' ,top:'6vh'}}
+                sx={{ width: 240, flexShrink: 0, alignItems: 'center', justifyContent: 'center', top: '6vh' }}
 
 
             >
@@ -171,6 +168,7 @@ const Navbar = () => {
                     {drawerItems}
                 </div>
             </Drawer>
+            <SignInModal open={openSignIn} setOpen={setOpenSignIn} />
         </>
     );
 };

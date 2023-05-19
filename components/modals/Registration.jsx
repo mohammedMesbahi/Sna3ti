@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Button, Modal, Tab } from '@mui/material'
+import { Button, Modal, Tab,IconButton } from '@mui/material'
 import Dialog from '@mui/material/Dialog';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { useState } from 'react'
@@ -20,26 +20,33 @@ const style = {
   background: 'white',
 };
 
-export default function RegistrationModal({ isOpen, setIsOpen }) {
+export default function RegistrationModal({ open, setOpen }) {
   const [view, setView] = useState('1')
 
   const changeView = (event, newView) => {
     setView(newView)
   }
   const handleClose = () => {
-    setIsOpen(false)
+    setOpen(false)
   };
 
   return (
 
     <Modal
       hideBackdrop
-      open={isOpen}
+      open={open}
       sx={style}
 
     >
       <>
-        <CloseIcon onClick={handleClose} sx={{ ':hover': { bgcolor: 'lightgray' } }} />
+      <IconButton
+          color="inherit"
+          aria-label="close drawer"
+          onClick={handleClose}
+
+        >
+          <CloseIcon />
+        </IconButton>
         <TabContext value={view}>
           <TabList
             onChange={changeView}
