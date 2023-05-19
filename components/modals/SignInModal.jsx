@@ -10,9 +10,12 @@ import {
   Avatar,
   Typography,
   Stack,
+  IconButton,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Link from "next/link";
+import CloseIcon from '@mui/icons-material/Close';
+
 export default function SignInModal({ open, setOpen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +40,7 @@ export default function SignInModal({ open, setOpen }) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
+        
         <DialogTitle
           sx={{
             display: "flex",
@@ -45,6 +49,14 @@ export default function SignInModal({ open, setOpen }) {
             paddingBottom: "0px",
           }}
         >
+          <IconButton
+          color="inherit"
+          aria-label="close drawer"
+          onClick={handleClose}
+          sx={{position:'absolute',top:'0px',left:'0px'}}
+        >
+          <CloseIcon />
+        </IconButton>
           <Avatar sx={{ bgcolor: "black" }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -81,11 +93,8 @@ export default function SignInModal({ open, setOpen }) {
               </Link>
             </Stack>
           </DialogContent>
-          <DialogActions sx={{marginBottom:1}}>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit"  variant="contained" sx={{bgcolor:'black',color:'white'}}>
+          <DialogActions >
+            <Button type="submit"  variant="contained" sx={{bgcolor:'black',color:'white',width:'100%' ,marginBottom:2}} size="large">
               submit
             </Button>
           </DialogActions>
