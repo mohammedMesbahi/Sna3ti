@@ -20,7 +20,7 @@ function Handicrafts() {
     const theme = useTheme();
     const isSmallDevice = useMediaQuery(theme.breakpoints.down('sm'));
     return (
-        <Box container
+        <Box 
             id='handicrafts'
             component='section'
             sx={{ minHeight: '100vh', minWidth: '100%', }}
@@ -104,7 +104,7 @@ const handicrafts = [
     },
 ]
 const listOfHandicafts = handicrafts.map((handicraft,index) =>
-    < SwiperSlide key={handicraft.id}  centeredSlides={index ===3}>
+    < SwiperSlide key={handicraft.id}  >
         <Stack alignItems={'center'} justifyContent={'center'} paddingY={10}>
             <Avatar
                 alt={handicraft.fullName}

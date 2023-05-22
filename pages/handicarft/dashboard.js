@@ -40,7 +40,7 @@ function Dashboard() {
                     <Grid item borderBottom={'1px solid lightGray'}>
                         <Stack direction="row" alignItems="center">
                             <Image
-                                src="/logs/6.jpeg"
+                                src="/logs/6.png"
                                 width={64}
                                 height={64}
                                 alt="Picture of the author"
@@ -443,6 +443,7 @@ function EditProfileTab() {
                         size="small"
                         //TODO: remove the default value
                         defaultValue="email@example.com"
+                        disabled
                     />
                 </Grid>
 
@@ -553,8 +554,6 @@ function ChangePasswordTab() {
                 <Grid item xs={12}>
                     <NextLink href="/password/reset">
                             Forgot password?
-                        {/* <MuiLink underline="none">
-                        </MuiLink> */}
                     </NextLink>
 
                 </Grid>

@@ -117,7 +117,7 @@ const Navbar = () => {
                     >
                         <Grid item >
                             <Image
-                                src="/logs/6.jpeg"
+                                src="/logs/6.png"
                                 width={74}
                                 height={74}
                                 alt="Picture of the author"
