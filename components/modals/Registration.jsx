@@ -1,7 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import { Button, Modal, Tab, IconButton } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
+import { Modal, Tab, IconButton } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

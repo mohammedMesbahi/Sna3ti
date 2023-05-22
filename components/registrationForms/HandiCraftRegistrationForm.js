@@ -17,7 +17,7 @@ const HandiCraftRegistrationForm = () => {
     password: '',
     phoneNumber: '',
     address: '',
-    profileImageName: undefined,
+    profileImageName: null,
     carft: '',
   });
 
