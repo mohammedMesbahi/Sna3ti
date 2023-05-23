@@ -1,125 +1,166 @@
-import React from 'react'
-import {
-    Button,
-    Box, Typography,
-    Rating,
-    Stack,
-    Avatar,
-    useMediaQuery,
-    useTheme
-} from '@mui/material'
+import { Box } from '@mui/system'
+import { Button, Card, CardContent, CardMedia, Stack, Typography } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Rating from '@mui/material/Rating';
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import 'swiper/css/navigation';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper';
-
-import 'swiper/swiper-bundle.min.css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Image from 'next/image';
+import Link from 'next/link';
 function Handicrafts() {
-    const theme = useTheme();
-    const isSmallDevice = useMediaQuery(theme.breakpoints.down('sm'));
     return (
-        <Box 
+        <Box
             id='handicrafts'
             component='section'
-            sx={{ minHeight: '100vh', minWidth: '100%', }}
+            sx={{
+                width: {
+                    xs: '100%',
+                    md: '50%',
+                },
+                height: {
+                    xs:'65vh',
+                    md: '100%',
+                },
+                borderRight:{
+                    xs:'none',
+                    md:'1px solid #e0e0e0'
+                },
+                borderBottom:{
+                    xs:'1px solid #e0e0e0',
+                    md:'none'
+                }
+            }}
+            display={'flex'}
+            flexDirection={'column'}
+            alignItems={'center'}
+            justifyContent={'center'}
         >
             <Swiper
-                effect={'coverflow'}
-                grabCursor={true}
-                centeredSlides={true}
+                modules={[Pagination, A11y, Autoplay]}
+                slidesPerView={1}
                 loop={true}
-                slidesPerView={'auto'}
-                coverflowEffect={{
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 1,
-                    modifier: 1,
-                    slideShadows: false,
+                pagination={{ clickable: true }}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
                 }}
-                pagination={{ el: '.swiper-pagination', clickable: true }}
-                navigation={{
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                    clickable: true,
-                }}
-                modules={[EffectCoverflow, Pagination, Navigation]}
-                color='yellow'
-                speed={700}
-                spaceBetween={100}
-                
-                
-                >
-            {listOfHandicafts}
-            <div className="slider-controler">
-                <div className="swiper-button-prev slider-arrow" style={{ color:'gold' }} >
-                </div>
-                <div className="swiper-button-next slider-arrow" style={{ color:'gold' }}>
-                </div>
-                <div className="swiper-pagination" style={{ color:'gold' }}></div>
-            </div>
-        </Swiper>
+                className='handicarfts_swiper'
+                centeredSlides={true}
+                speed={700} // Set the transition speed in milliseconds
+                effect='fade' // Choose the transition effect (e.g., slide, fade)
+            >
+                <SwiperSlide className='custom_slide' >
+                    <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
+                        <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                            <Image
+                                src="/images/embroidery.png"
+                                loading="lazy"
+                                alt="handicfraft"
+                                width={200}
+                                height={200}
+                                style={{ borderRadius: '50%' }}
+                            >
+                            </Image>
+                            <Typography
+                                variant="h5"
+
+                            >
+                                mohammed mesbahi
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                craft
+                            </Typography>
+                            <Rating name="read-only" value={4.4} precision={0.5} readOnly />
+                        </Stack>
+                    </Link>
+                </SwiperSlide>
+                <SwiperSlide className='custom_slide' >
+                    <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
+                        <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                            <Image
+                                src="/images/embroidery.png"
+                                loading="lazy"
+                                alt="handicfraft"
+                                width={200}
+                                height={200}
+                                style={{ borderRadius: '50%' }}
+                            >
+                            </Image>
+                            <Typography
+                                variant="h5"
+
+                            >
+                                mohammed mesbahi
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                craft
+                            </Typography>
+                            <Rating name="read-only" value={4.4} precision={0.5} readOnly />
+                        </Stack>
+                    </Link>
+                </SwiperSlide>
+                <SwiperSlide className='custom_slide' >
+                    <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
+                        <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                            <Image
+                                src="/images/embroidery.png"
+                                loading="lazy"
+                                alt="handicfraft"
+                                width={200}
+                                height={200}
+                                style={{ borderRadius: '50%' }}
+                            >
+                            </Image>
+                            <Typography
+                                variant="h5"
+
+                            >
+                                mohammed mesbahi
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                craft
+                            </Typography>
+                            <Rating name="read-only" value={4.4} precision={0.5} readOnly />
+                        </Stack>
+                    </Link>
+                </SwiperSlide>
+                <SwiperSlide className='custom_slide' >
+                    <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
+                        <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                            <Image
+                                src="/images/embroidery.png"
+                                loading="lazy"
+                                alt="handicfraft"
+                                width={200}
+                                height={200}
+                                style={{ borderRadius: '50%' }}
+                            >
+                            </Image>
+                            <Typography
+                                variant="h5"
+
+                            >
+                                mohammed mesbahi
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                craft
+                            </Typography>
+                            <Rating name="read-only" value={4.4} precision={0.5} readOnly />
+                        </Stack>
+                    </Link>
+                </SwiperSlide>
+                {/* Add more slides as needed */}
+            </Swiper>
+            <Button variant='contained' sx={{ width: {xs:'90%',sm:'40%'}, mt: 2 }}>
+                <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
+                    View All Handicrafts
+                </Link>
+            </Button>
 
         </Box >
     )
 }
 
 export default Handicrafts
-const handicrafts = [
-    {
-        id: 1,
-        fullName: 'Handicraft 1',
-        craft: 'craft 1',
-        image: 'https://picsum.photos/250',
-        rate: 4,
-    },
-    {
-        id: 2,
-        fullName: 'Handicraft 2',
-        craft: 'craft 2',
-        image: 'https://picsum.photos/250',
-        rate: 4.5,
-    },
-    {
-        id: 3,
-        fullName: 'Handicraft 3',
-        craft: 'craft 3',
-        image: 'https://picsum.photos/250',
-        rate: 3.5,
-    },
-    {
-        id: 4,
-        fullName: 'Handicraft 4',
-        craft: 'craft 4',
-        image: 'https://picsum.photos/250',
-        rate: 4,
-    },
-    {
-        id: 5,
-        fullName: 'Handicraft 5',
-        craft: 'craft 5',
-        image: 'https://picsum.photos/250',
-        rate: 4.5,
-    },
-]
-const listOfHandicafts = handicrafts.map((handicraft,index) =>
-    < SwiperSlide key={handicraft.id}  >
-        <Stack alignItems={'center'} justifyContent={'center'} paddingY={10}>
-            <Avatar
-                alt={handicraft.fullName}
-                src={handicraft.image}
-                sx={{ width: 200, height: 200 }}
-            />
-            <Typography gutterBottom variant="h5" component="div">
-                {handicraft.fullName}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                {handicraft.craft}
-            </Typography>
-            <Rating name="read-only" value={handicraft.rate} readOnly />
-        </Stack>
-    </SwiperSlide >
-
-
-)
