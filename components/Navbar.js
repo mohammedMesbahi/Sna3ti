@@ -5,9 +5,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
 import SignInModal from './modals/SignInModal';
 const Navbar = () => {
+    const router = useRouter();
+
     const [open, setOpen] = React.useState(false);
     const [openSignIn, setOpenSignIn] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setOpen(!open);
     };

@@ -1,47 +1,42 @@
 import * as React from "react";
-import { Modal, Tab, IconButton } from "@mui/material";
+import { Modal, Tab, IconButton,Box } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import CustomerRegistrationForm from "../registrationForms/CustomerRegistrationForm";
-import HandiCraftRegistrationForm from "../registrationForms/HandiCraftRegistrationForm";
+import CustomerRegistrationForm from "../registrationForms/Customers/CustomerRegistrationForm";
+import HandiCraftRegistrationForm from "../registrationForms/Handicrafts/HandiCraftRegistrationForm";
 import CloseIcon from "@mui/icons-material/Close";
+
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { xs: "90%", md: "50%" },
-  height: { xs: "80%", md: "60%" },
   padding: "10px",
   background: "white",
+  minWidth: { xs: "90%", md: "50%" },
 };
 
 export default function RegistrationModal({ open, setOpen }) {
   const [view, setView] = useState("1");
-
-  const changeView = (event, newView) => {
-    setView(newView);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [showTabList, setShowTabList] = useState(true);
 
   return (
-    <Modal hideBackdrop open={open} sx={style}>
-      <>
-        <IconButton
-          color="inherit"
-          aria-label="close drawer"
-          onClick={handleClose}
-        >
-          <CloseIcon />
-        </IconButton>
-        <TabContext value={view}>
-          <TabList onChange={changeView} aria-label="Tabs example" centered>
+    <Modal hideBackdrop open={open} >
+      <Box
+        sx={style}
+      >
+        
+        <TabContext value={view} >
+          
+          <TabList
+            onChange={(event, newView) => setView(newView)}
+            aria-label="Tabs example"
+            centered
+            sx={{ display: showTabList ? "block" : "none" }}
+          >
             <Tab
-              sx={{ padding: "0px" }}
               icon={<HandymanIcon />}
               iconPosition="start"
               label="As Handicraft"
@@ -50,19 +45,29 @@ export default function RegistrationModal({ open, setOpen }) {
             <Tab
               icon={<ShoppingCartIcon />}
               iconPosition="start"
-              sx={{ padding: "0px", paddingLeft: "10px" }}
               label="Or As Customer"
               value="2"
             />
           </TabList>
           <TabPanel value="1">
-            <HandiCraftRegistrationForm></HandiCraftRegistrationForm>
+            <HandiCraftRegistrationForm setShowTabList={setShowTabList} ></HandiCraftRegistrationForm>
           </TabPanel>
           <TabPanel value="2">
             <CustomerRegistrationForm></CustomerRegistrationForm>
           </TabPanel>
         </TabContext>
-      </>
+        <IconButton
+          color="inherit"
+          aria-label="close drawer"
+          onClick={() => {
+            setOpen(false);
+            setShowTabList(true);
+          }}
+          sx={{ position: "absolute", top: {xs:"0px",md:"4px"}, left: "4px" }}
+        >
+          <CloseIcon  />
+        </IconButton>
+      </Box>
     </Modal>
   );
 }
