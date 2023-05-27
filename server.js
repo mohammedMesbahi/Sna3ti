@@ -25,6 +25,11 @@ app.prepare().then(() => {
     changeOrigin: true, // needed for virtual hosted sites    
   }));
 
+  server.use('/uploads/items', createProxyMiddleware({
+    target: 'http://localhost:3000', // target base URL
+    changeOrigin: true, // needed for virtual hosted sites
+    })
+  );
   server.use('/uploads/profileImage', createProxyMiddleware({
     target: 'http://localhost:3000', // target base URL
     changeOrigin: true, // needed for virtual hosted sites    

@@ -1,13 +1,20 @@
-import HandicraftDashboard from '@/components/dashborads/handicraft/handicraftDashboard'
+import CreatItemTab from '@/components/dashborads/handicraft/CreatItemTab'
+import DashboardLayout from '@/components/dashborads/handicraft/DashboardLayout'
 import React from 'react'
 
-function Dashboard({user}) {
+function PublishItem({ user }) {
     return (
-        <HandicraftDashboard user={user} />
+        <CreatItemTab user={user} />
     )
 }
-
-export default Dashboard
+PublishItem.getLayout = function getLayout(page) {
+    return (
+        <DashboardLayout>
+            {page}
+        </DashboardLayout>
+    )
+}
+export default PublishItem
 /* export async function getServerSideProps({ req, res }) {
     const currentPath = req ? req.url : window.location.pathname;
     if (!req.user && currentPath !== '/') {

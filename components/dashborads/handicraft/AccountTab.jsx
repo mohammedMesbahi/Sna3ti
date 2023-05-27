@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid } from "@mui/material";
 import { Tab, TabContext, TabList, TabPanel } from "@mui/lab";
 import React from "react";
+import DashboardLayout from "./DashboardLayout";
 function AccountTab() {
   const [view, setView] = React.useState("editProfile");
 
@@ -39,4 +40,7 @@ function AccountTab() {
     </Grid>
   );
 }
+AccountTab.getLayout = function getLayout(page) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 export default AccountTab;

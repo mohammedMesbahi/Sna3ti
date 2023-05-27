@@ -2,7 +2,7 @@ import { TextField, Typography, Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUpRightFromSquare as faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Grid, Stack, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
@@ -27,6 +27,13 @@ const CreatItemTab = () => {
   const handleSubmit = async (event) => {
     setSubmitting(true);
     event.preventDefault();
+    if (images === undefined) {
+      setOpenAlert(true);
+      setAlertMessage("Please select at least one image");
+      setAlertSeverity("error");
+      setSubmitting(false);
+      return;
+    }
 
     const formData = new FormData();
     formData.append("itemName", itemName);
@@ -35,7 +42,6 @@ const CreatItemTab = () => {
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
-
     let res = await fetch("/api/handicrafts/items", {
       method: "POST",
       body: formData,
@@ -59,17 +65,17 @@ const CreatItemTab = () => {
   const handleImageChange = (e) => {
     const files = e.target.files;
     for (let i = 0; i < files.length; i++) {
-      console.log('File name: ' + files[i].name);
-      console.log('File size: ' + files[i].size);
-      console.log('File type: ' + files[i].type);
-      console.log('Last modified: ' + files[i].lastModifiedDate);
+      console.log("File name: " + files[i].name);
+      console.log("File size: " + files[i].size);
+      console.log("File type: " + files[i].type);
+      console.log("Last modified: " + files[i].lastModifiedDate);
     }
     if (files.size > 4) {
       setImages(undefined);
       alert("You can only upload a maximum of 4 images");
       return (e.target.value = ""); // Clear the selected file
     }
-    setImages( files);
+    setImages(files);
   };
 
   return (
@@ -111,7 +117,6 @@ const CreatItemTab = () => {
         onSubmit={handleSubmit}
         style={{ height: "60%", alignSelf: "center" }}
         onChange={() => setOpenAlert(false)}
-        
       >
         <Grid
           container
@@ -143,9 +148,6 @@ const CreatItemTab = () => {
               required
               inputProps={{
                 min: 1,
-                startAdornment: (
-                  <InputAdornment position="start">klllg</InputAdornment>
-                ),
               }}
             />
           </Grid>
@@ -182,15 +184,18 @@ const CreatItemTab = () => {
             </label>
           </Grid>
           <Grid item>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="large"
-              disabled={submitting}
-            >
-              submit
-            </Button>
+          <LoadingButton
+            loading={submitting}
+            type="submit"
+            variant="contained"
+            sx={{
+              alignSelf: "center",
+              justifySelf: "center",
+            }}
+            size="large"
+          >
+            <span>Submit</span>
+          </LoadingButton>
           </Grid>
         </Grid>
       </form>

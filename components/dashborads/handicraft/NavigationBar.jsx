@@ -8,32 +8,35 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { TabList } from "@mui/lab";
-import { Tab } from "@mui/material";
+import Navcss from "@/styles/NavBar.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
+import Link from "next/link";
 // import { Box } from "@mui/joy";
-function NavigationBar({ changeTab }) {
+function NavigationBar() {
   const matchMD = useMediaQuery("(min-width:960px)");
   return (
     <Stack
       component={"aside"}
       border={"1px solid lightGray"}
       sx={{
-        width: { xs: "100%", md: "20%" },
-        height: { xs: "auto", md: "100%" },
         flexDirection: { xs: "row", md: "column" },
-        // overflow: "auto",
       }}
     >
       {/* logo Box */}
 
-      <Box  
+      <Box
         flexDirection="row"
         alignItems="center"
+        
         borderBottom={"1px solid lightGray"}
         component={"header"}
-        sx={{ display: { md: "flex", xs: "none" } }}
+        sx={{ display: { md: "flex", sm: "none" },
+        justifyContent:{
+          md:"center",
+          lg:"flex-start"
+        },
+       }}
       >
         <Image
           src="/logs/6.png"
@@ -42,90 +45,98 @@ function NavigationBar({ changeTab }) {
           alt="Picture of the author"
           style={{ display: "inline" }}
         ></Image>
-        <Typography variant="h5" fontSize={'2rem'} >MyCraft</Typography>
+        <Typography
+          variant="body2"
+          fontWeight={"bold"}
+          sx={{ fontSize: "2rem",display: { md:'none',lg:'flex'} }}
+        >
+          MyCraft
+        </Typography>
       </Box>
       {/* tab list */}
       <Box
         flexGrow={1}
         sx={{
           overflow: "auto",
+          display: "flex",
+          flexDirection: { xs: "row", md: "column" },
         }}
       >
-        <TabList
-          onChange={changeTab}
-          // orientation={{ xs: "horizantal", md: "vertical" }}
-          orientation={matchMD ? "vertical" : "horizontal"}
-          variant="scrollable"
-          scrollButtons="auto"
-          // variant="fullWidth"
-          sx={{
-            overflow: "auto",
-            height: { xs: "auto", md: "100%" },
-          }}
+        <Link
+          href="/handicraft/dashboard/profile"
+          className={Navcss.navbar__link}          
         >
-          <Tab
-            label={matchMD ? "profile" : ""}
-            value="profile"
-            icon={<AccountCircleIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-          <Divider light/>
-          <Tab
-            label={matchMD ? "handicrafts" : ""}
-            value="handicrafts"
-            icon={<PeopleOutlineIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-          <Divider light/>
-          <Tab
-            label={matchMD ? "items" : ""}
-            value="items"
-            icon={<ShoppingCartIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-          <Divider light/>
-          <Tab
-            label={matchMD ? "notifications" : ""}
-            value="notifications"
-            icon={<NotificationsNoneIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-          <Divider light/>
-          <Tab
-            label={matchMD ? "publish an Item" : ""}
-            value="creat"
-            icon={<AddCircleOutlineIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-          <Divider light/>
-          <Tab
-            label={matchMD ? "account" : ""}
-            value="account"
-            icon={<SettingsIcon />}
-            iconPosition="start"
-            sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
-            wrapped
-          />
-        </TabList>
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <AccountCircleIcon fontSize="large" sx={{marginRight:1}}  /> {matchMD ? "profile" : ""}
+          </Stack>
+        </Link>
+        <Link
+          href="/handicraft/dashboard/handicrafts"
+          className={Navcss.navbar__link}          
+        >
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <PeopleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "handicrafts" : ""}
+          </Stack>
+        </Link>
+        <Link
+          href="/handicraft/dashboard/items"
+          className={Navcss.navbar__link}          
+        >
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <ShoppingCartIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "items" : ""}
+          </Stack>
+        </Link>
+        <Link
+          href="/handicraft/dashboard/publish-item"
+          className={Navcss.navbar__link}          
+        >
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <AddCircleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "publish an item" : ""}
+          </Stack>
+        </Link>
+        <Link
+          href="/handicraft/dashboard/settings"
+          className={Navcss.navbar__link}          
+        >
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <SettingsIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "account settings" : ""}
+          </Stack>
+        </Link>
       </Box>
 
       {/* log out button */}
-      <Button startIcon={<LogoutIcon sx={{ rotate: "180deg" }} />}
+      <Button
+        startIcon={<LogoutIcon sx={{ rotate: "180deg" }} />}
         sx={{
-          borderTop:{
-            xs:'none',
-            md:"1px solid lightGray"
-          }
+          borderTop: {
+            xs: "none",
+            md: "1px solid lightGray",
+          },
         }}
       >
         {matchMD ? "log out" : ""}

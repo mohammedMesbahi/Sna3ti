@@ -13,18 +13,18 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../reduxFolder/userSlice";
-
+import LoadingButton from "@mui/lab/LoadingButton";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Link from "next/link";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 export default function SignInModal({ open, setOpen }) {
   const [email, setEmail] = useState("anas@gmail.com");
   const [password, setPassword] = useState("123456789");
   const [submitting, setSubmitting] = useState(false);
+  const [buttonColor, setButtonColor] = useState("primary");
 
   const [openAlert, setOpenAlert] = useState(false);
   const [alertMessage, setAlerttMessage] = useState("");
@@ -47,18 +47,16 @@ export default function SignInModal({ open, setOpen }) {
 
     let res = await response.json();
     if (response.ok) {
-
+      setButtonColor("success");
       dispatch(login(res.user));
-      setOpen(false);
 
       if (res.user.role === "admin") {
         router.push("/admin/dashboard");
       } else if (res.user.role === "handicraft") {
-        router.push("/handicarft/dashboard");
+        router.push("/handicraft/dashboard");
       } else {
         router.push("/items");
       }
-      
     } else {
       setOpenAlert(true);
       setAlerttMessage(res.message);
@@ -96,7 +94,7 @@ export default function SignInModal({ open, setOpen }) {
           Sign in
         </Typography>
       </DialogTitle>
-      <form onSubmit={handleSubmit} onChange={() => setOpenAlert(false)} >
+      <form onSubmit={handleSubmit} onChange={() => setOpenAlert(false)}>
         <Collapse in={openAlert}>
           <Alert
             severity="error"
@@ -149,9 +147,11 @@ export default function SignInModal({ open, setOpen }) {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button
+          <LoadingButton
+            loading={submitting}
             type="submit"
-            variant="outlined"
+            variant="contained"
+            color={buttonColor}
             sx={{
               width: "100%",
               marginBottom: 2,
@@ -160,10 +160,9 @@ export default function SignInModal({ open, setOpen }) {
               justifySelf: "center",
             }}
             size="large"
-            disabled={submitting}
           >
-            {submitting ? "submitting" : "submit"}
-          </Button>
+            <span>Submit</span>
+          </LoadingButton>
         </DialogActions>
       </form>
     </Dialog>

@@ -11,7 +11,7 @@ import VerificationForm from "./VerificationForm";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
+import LoadingButton from '@mui/lab/LoadingButton';
 const predefinedCrafts = [
   "basketry",
   "carpets and rugs",
@@ -231,9 +231,18 @@ const HandiCraftRegistrationForm = ({ setShowTabList }) => {
 
       <Grid item xs={12}>
         <Stack direction={"row"} spacing={2}>
-          <Button type="submit" variant="contained" color="primary" disabled={submitting} >
-            submit
-          </Button>
+        <LoadingButton
+            loading={submitting}
+            type="submit"
+            variant="contained"
+            sx={{
+              alignSelf: "center",
+              justifySelf: "center",
+            }}
+            size="large"
+          >
+            <span>Submit</span>
+          </LoadingButton>
           <Button variant="outlined" color="primary" onClick={() => { setStep('verification') }} >
             next
           </Button>

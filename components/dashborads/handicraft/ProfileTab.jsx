@@ -1,11 +1,14 @@
-import { Rating, Stack, Typography ,Box} from "@mui/material";
+import { Card, Rating, Stack, Typography, Box, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
-
-function ProfileTab({user}) {
-  user = useSelector((state) => state.user) || user || {} ;
+import MyItem from "./MyItem";
+function ProfileTab({ user }) {
   return (
-    <Stack container height={"100%"}>
-      <Box padding={2} borderBottom={"1px solid lightGray"}  >
+    <Stack flexGrow={1} flexDirection="column" height={"100%"} width={"100%"}
+      alignItems={"stretch"}
+      justifyContent={"flex-start"}
+
+    >
+      <Box padding={2} borderBottom={"1px solid lightGray"}>
         <Stack direction="row" alignItems="center" spacing={2}>
           <img
             src={user.profileImage}
@@ -29,10 +32,30 @@ function ProfileTab({user}) {
         </Stack>
       </Box>
 
-      <Box flexGrow={1}
-        
+      <Box
+        p={2}
+        display={"flex"}
+        flexDirection={"row"}
+        flexWrap={"wrap"}
+        gap={1}
+        overflow={"auto"}
+        flexGrow={1}
+        sx={{
+          height:{
+            md:"calc(100vh - 200px)",
+            xs:"calc(100vh - 650px)",
+
+          },
+          justifyContent:{
+            xs:"center",
+            sm:'flex-start',
+            md:"flex-start"
+          }
+        }}
       >
-        items
+        {user.items.map((item) => (
+          <MyItem item={item} />
+        ))}
       </Box>
     </Stack>
   );
