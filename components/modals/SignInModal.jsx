@@ -96,7 +96,7 @@ export default function SignInModal({ open, setOpen }) {
           Sign in
         </Typography>
       </DialogTitle>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onChange={() => setOpenAlert(false)} >
         <Collapse in={openAlert}>
           <Alert
             severity="error"

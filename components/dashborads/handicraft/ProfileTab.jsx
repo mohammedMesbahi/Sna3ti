@@ -1,11 +1,11 @@
-import { Grid, Rating, Stack, Typography } from "@mui/material";
+import { Rating, Stack, Typography ,Box} from "@mui/material";
 import { useSelector } from "react-redux";
 
 function ProfileTab({user}) {
   user = useSelector((state) => state.user) || user || {} ;
   return (
-    <Grid container height={"100%"} direction={"column"}>
-      <Grid item padding={2} borderBottom={"1px solid lightGray"}>
+    <Stack container height={"100%"}>
+      <Box padding={2} borderBottom={"1px solid lightGray"}  >
         <Stack direction="row" alignItems="center" spacing={2}>
           <img
             src={user.profileImage}
@@ -23,16 +23,18 @@ function ProfileTab({user}) {
               <Typography variant="subtitle1" display={"inline"}>
                 {user.craft}
               </Typography>
-              <Rating name="read-only" value={4.5} precision={0.5} readOnly />
+              <Rating name="read-only" value={1.5} precision={0.5} readOnly />
             </Stack>
           </Stack>
         </Stack>
-      </Grid>
+      </Box>
 
-      <Grid item flexGrow={1}>
+      <Box flexGrow={1}
+        
+      >
         items
-      </Grid>
-    </Grid>
+      </Box>
+    </Stack>
   );
 }
 export default ProfileTab;

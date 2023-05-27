@@ -93,7 +93,7 @@ const HandiCraftRegistrationForm = ({ setShowTabList }) => {
   const UserDetailsForm = <form onSubmit={handleSubmit} onChange={() => setOpenAlert(false)} >
     <Collapse in={openAlert}  >
       <Alert
-        severity="error"
+        severity={alertSeverity}
         action={
           <IconButton
             aria-label="close"
