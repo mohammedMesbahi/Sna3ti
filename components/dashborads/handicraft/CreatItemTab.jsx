@@ -122,7 +122,7 @@ const CreatItemTab = () => {
           container
           rowSpacing={2}
           columnSpacing={{ md: 1 }}
-          width={{ xs: "100%", md: "80%" }}
+          width={{ xs: "100%", md: "60%" }}
           margin={{ xs: "0", md: "auto" }}
           flexDirection={{ xs: "column", md: "row" }}
         >

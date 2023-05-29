@@ -8,10 +8,11 @@ import Divider from "@mui/material/Divider";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { BookmarkAdd } from "@mui/icons-material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Paper from '@mui/material/Paper';
-import VerifiedIcon from '@mui/icons-material/Verified';
+import { BookmarkAdd, DeleteForever } from "@mui/icons-material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Paper from "@mui/material/Paper";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import Rating from "@mui/material/Rating";
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -66,53 +67,82 @@ function MyItem({ item }) {
     setAnchorEl(null);
   };
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
-    <Paper elevation={3} sx={{padding:1,maxWidth:300}} >
-      <Box display={"flex"} flexDirection={"row"} width={"100%"} gap={1} >
-        <Stack flexGrow={1}>
-          <Typography variant="h5">Yosemite National Parkcc</Typography>
-          <Typography variant="body5">April 24 to May 02, 2021</Typography>
-        </Stack>
-        <VerifiedIcon style={{color: !item.checked ? "#00e676" : 'gray'}} size="2x"  />
-      </Box>
-
-      <img src={item.images[0]} width={'100%'} style={{borderRadius:10}}  />
-
-      <Stack flexDirection={"row"}>
-        <Typography variant="h6" flexGrow={1}>
-          {item.price}
+    <Paper
+      elevation={3}
+      sx={{
+        padding: 1,
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        width:'100%'
+      }}
+      key={item._id}
+    >
+      <Stack flexDirection={"row"} gap={1} alignItems={"center"}>
+        <Typography fontSize={20} fontWeight="lg" flexGrow={1}>
+          2,900 <strong>MAD</strong>
         </Typography>
-        <IconButton onClick={handleClick} id="demo-customized-button">
+        <VerifiedIcon
+          style={{ color: item.checked ? "#00e676" : "gray" }}
+          size="2x"
+        />
+      </Stack>
+
+      <img src={item.images[0]} width={"100%"} style={{ borderRadius: 10 }} />
+
+      <Stack>
+        <Typography variant="subtitle1" fontWeight={"bold"} flexGrow={1}>
+          {item.itemName}
+        </Typography>
+        <Typography variant="subtitle2">{formatDate(item.date)}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Rating name="read-only" value={1.5} precision={0.5} readOnly />
+          <Typography variant="subtitle2" color="text.secondary">
+            (1 reviews)
+          </Typography>
+        </Box>
+        <IconButton
+          onClick={handleClick}
+          id="demo-customized-button"
+          sx={{ alignSelf: "flex-end", justifySelf: "flex-end", p: 0 }}
+        >
           <MoreVertIcon />
         </IconButton>
-        <StyledMenu
-          id="demo-customized-menu"
-          MenuListProps={{
-            "aria-labelledby": "demo-customized-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose} disableRipple>
-            <EditIcon />
-            Edit
-          </MenuItem>
-          <MenuItem onClick={handleClose} disableRipple>
-            <FileCopyIcon />
-            Duplicate
-          </MenuItem>
-          <Divider sx={{ my: 0.5 }} />
-          <MenuItem onClick={handleClose} disableRipple>
-            <ArchiveIcon />
-            Archive
-          </MenuItem>
-          <MenuItem onClick={handleClose} disableRipple>
-            <MoreHorizIcon />
-            More
-          </MenuItem>
-        </StyledMenu>
       </Stack>
+
+      <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          "aria-labelledby": "demo-customized-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} disableRipple>
+          <EditIcon />
+          Edit
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <DeleteForever />
+          Delete
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem onClick={handleClose} disableRipple>
+          <ArchiveIcon />
+          Archive
+        </MenuItem>
+      </StyledMenu>
     </Paper>
   );
 }

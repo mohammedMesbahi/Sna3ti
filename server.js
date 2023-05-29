@@ -34,6 +34,16 @@ app.prepare().then(() => {
     target: 'http://localhost:3000', // target base URL
     changeOrigin: true, // needed for virtual hosted sites    
   }));
+  server.use('/images', createProxyMiddleware({
+    target: 'http://localhost:3000', // target base URL
+    changeOrigin: true, // needed for virtual hosted sites
+    })
+  );
+  server.use('/static', createProxyMiddleware({
+    target: 'http://localhost:3000', // target base URL
+    changeOrigin: true, // needed for virtual hosted sites
+    })
+  );
 
   server.all('*', (req, res) => {
     return handle(req, res)

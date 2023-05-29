@@ -1,9 +1,14 @@
 import { faUserPen, faUnlockKeyhole } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid } from "@mui/material";
-import { Tab, TabContext, TabList, TabPanel } from "@mui/lab";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import React from "react";
 import DashboardLayout from "./DashboardLayout";
+import EditProfileTab from "./EditProfileTab";
+import ChangePasswordTab from "./ChangePasswordTab";
 function AccountTab() {
   const [view, setView] = React.useState("editProfile");
 
@@ -12,18 +17,25 @@ function AccountTab() {
   };
 
   return (
-    <Grid container sx={{ height: "100%" }} justifyContent={"center"}>
-      <Grid item xs={10} marginTop={5}>
+    <Grid
+      container
+      // width={10/12}
+      margin={"auto"}
+      sx={{ height: "100%",width:{xs:'100%',md:'80%'} }}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
+      <Grid item height={"80%"}>
         <TabContext value={view}>
-          <TabList onChange={changeView} aria-label="Tabs example" centered>
+          <TabList onChange={changeView} scrollButtons="auto" centered>
             <Tab
-              icon={<FontAwesomeIcon icon={faUserPen} size="2x" />}
+              icon={<FontAwesomeIcon icon={faUserPen} />}
               iconPosition="start"
               label="edit profile"
               value="editProfile"
             />
             <Tab
-              icon={<FontAwesomeIcon icon={faUnlockKeyhole} size="2x" />}
+              icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
               iconPosition="start"
               label="change password"
               value="changePassword"

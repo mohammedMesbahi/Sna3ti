@@ -21,6 +21,8 @@ function NavigationBar() {
       border={"1px solid lightGray"}
       sx={{
         flexDirection: { xs: "row", md: "column" },
+        width: { xs: "100%", md: "20%" },
+        display: { xs: "none",sm:'none', md: "flex" },
       }}
     >
       {/* logo Box */}
@@ -31,7 +33,7 @@ function NavigationBar() {
         
         borderBottom={"1px solid lightGray"}
         component={"header"}
-        sx={{ display: { md: "flex", sm: "none" },
+        sx={{ display: { md: "flex", xs: "none" },
         justifyContent:{
           md:"center",
           lg:"flex-start"
@@ -63,7 +65,7 @@ function NavigationBar() {
         }}
       >
         <Link
-          href="/handicraft/dashboard/profile"
+          href="/handicraft/dashboard/"
           className={Navcss.navbar__link}          
         >
           <Stack
@@ -111,7 +113,7 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <AddCircleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "publish an item" : ""}
+            <AddCircleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "publish item" : ""}
           </Stack>
         </Link>
         <Link
@@ -124,7 +126,7 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <SettingsIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "account settings" : ""}
+            <SettingsIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "account" : ""}
           </Stack>
         </Link>
       </Box>
