@@ -1,6 +1,6 @@
 import { Card, Rating, Stack, Typography, Box, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
-import Image from "next/image";
+// import { useSelector } from "react-redux";
+// import Image from "next/image";
 import MyItem from "./MyItem";
 function ProfileTab() {
   const user = {

@@ -13,6 +13,7 @@ import Pagination from "@mui/material/Pagination";
 import Skeleton from "@mui/material/Skeleton";
 import { HandicraftSearchBar } from "./SearchBars";
 import HandicraftsTabSkeleton from "./HandicraftsTabSkeleton";
+import Link from "@/lib/Link";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function HandicraftsTab() {
@@ -77,9 +78,9 @@ function HandicraftsTab() {
                   alt={handicraft.fullName}
                   style={{ width: "90%", borderRadius: "50%" }}
                 />
-                {/* handicraft infos */}
+                {/* handicraft infos */} 
                 <Stack alignItems={"center"}>
-                  <Typography variant="h6" fontWeight="bold">
+                  <Typography variant="h6" fontWeight="bold" component={Link} href={`/handicraft/dashboard/handicrafts/${handicraft._id}`} >
                     {handicraft.fullName}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
