@@ -12,7 +12,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../../reduxFolder/userSlice";
+import { loginUser } from "@/reduxFolder/actions/userActions";
 import LoadingButton from "@mui/lab/LoadingButton";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Link from "next/link";
@@ -48,7 +48,8 @@ export default function SignInModal({ open, setOpen }) {
     let res = await response.json();
     if (response.ok) {
       setButtonColor("success");
-      dispatch(login(res.user));
+      dispatch(loginUser(res.user));
+      console.log(res.user);
 
       if (res.user.role === "admin") {
         router.push("/admin/dashboard");

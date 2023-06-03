@@ -6,6 +6,7 @@ import {
   Typography,
   Rating,
   Grid,
+  Container,
 } from "@mui/material";
 import React from "react";
 import useSWR from "swr";
@@ -33,12 +34,9 @@ function HandicraftsTab() {
     return address;
   };
   return (
-    <Stack
-      gap={1}
-      width={"100%"}
-      height={"100%"}
-      flexGrow={1}
+    <Container sx={{maxWidth:{xs:'95%',md:'90%'}}} margin={'auto'} component={"section"}
     >
+      {/* search bar box */}
       <Box
         sx={{
           padding: 2,
@@ -47,6 +45,8 @@ function HandicraftsTab() {
             md: "80%",
           },
           alignSelf: "center",
+          margin:'auto',
+          position:'sticky',
         }}
       >
         {/* serch bar */}
@@ -80,7 +80,7 @@ function HandicraftsTab() {
                 />
                 {/* handicraft infos */} 
                 <Stack alignItems={"center"}>
-                  <Typography variant="h6" fontWeight="bold" component={Link} href={`/handicraft/dashboard/handicrafts/${handicraft._id}`} >
+                  <Typography variant="h6" fontWeight="bold" component={Link} href={`/handicrafts/${handicraft._id}`} >
                     {handicraft.fullName}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -110,7 +110,7 @@ function HandicraftsTab() {
           <Pagination count={10} color="primary" />
         </Box>
       </Stack>
-    </Stack>
+    </Container>
   );
 }
 

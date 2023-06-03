@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Divider, Grid } from "@mui/material";
+import { Avatar, Container, Divider, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Rating from "@mui/material/Rating";
 import { IconButton, Stack, Typography, Box, Button } from "@mui/material";
@@ -92,8 +92,15 @@ function Items({ items }) {
   };
 
   return (
-    <Stack>
-      <Grid container component={"section"} spacing={1} p={1}>
+    <>
+      <Grid
+        container
+        sx={{ maxWidth: { xs: "95%", md: "90%" } }}
+        margin={"auto"}
+        component={"section"}
+        spacing={1}
+        p={1}
+      >
         {/* list of items */}
 
         {items.map((item) => (
@@ -267,7 +274,7 @@ function Items({ items }) {
               flexDirection={"column"}
             >
               <Box width={320} margin={"auto"} marginTop={1}>
-                <Accordion defaultExpanded >
+                <Accordion defaultExpanded>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography>description</Typography>
                   </AccordionSummary>
@@ -297,12 +304,11 @@ function Items({ items }) {
                     },
                     color: "white",
                     flexGrow: 1,
-                    fonsize:{
-                        xs:"0.5rem",
-                        md:"1rem"
-                    }
+                    fonsize: {
+                      xs: "0.5rem",
+                      md: "1rem",
+                    },
                   }}
-                  
                   href={`https://wa.me/212652-652-652?text=I%20want%20to%20order%20${selectedItem.itemName}%20from%20your%20website`}
                   startIcon={<WhatsAppIcon />}
                 >
@@ -322,9 +328,9 @@ function Items({ items }) {
       <MuiPagination
         count={10}
         color="primary"
-        sx={{ alignSelf: "center", padding: 2 }}
+        sx={{ margin: "auto", padding: 2 }}
       />
-    </Stack>
+    </>
   );
 }
 

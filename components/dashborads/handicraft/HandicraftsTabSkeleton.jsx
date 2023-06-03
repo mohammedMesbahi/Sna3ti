@@ -1,13 +1,12 @@
 import React from 'react'
-import { Box, Divider, Grid, Paper, Stack } from '@mui/material'
+import { Box, Container, Divider, Grid, Paper, Stack } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton'
 
 function HandicraftsTabSkeleton() {
   return (
-    <Stack
+    <Container
         gap={1}
-        width={"100%"}
-        height={"100%"}
+        sx={{maxWidth:{xs:'95%',md:'90%'}}}  component={"section"}
       >
         <Box
           sx={{
@@ -59,7 +58,7 @@ function HandicraftsTabSkeleton() {
             ))}
           </Grid>
         </Stack>
-      </Stack>
+      </Container>
   )
 }
 

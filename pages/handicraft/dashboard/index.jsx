@@ -1,26 +1,19 @@
 import DashboardLayout from "@/components/dashborads/handicraft/DashboardLayout";
 import ProfileTab from "@/components/dashborads/handicraft/ProfileTab";
 import React from "react";
+import NoSsr from "@mui/base/NoSsr";
 
-function Dashboard({ user }) {
-  return <ProfileTab user={user} />;
+function Dashboard() {
+
+  return (
+    <NoSsr>
+      <ProfileTab />
+    </NoSsr>
+  );
 }
 Dashboard.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 export default Dashboard;
 
-/*
-const redirectUser = (res,path)=> {
-    if (res) {
-        res.redirect(302,path)
-        res.finished  = true;
-        return {
-            props:{}
-        };
-    }
-    Router.replace(path);
-    return {
-        props:{}
-    }
-} */
+ 

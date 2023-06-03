@@ -78,7 +78,7 @@ const Navbar = () => {
             <AppBar sx={{
                 bgcolor: 'white',
                 color: 'black',
-                position: 'fixed',
+                position: 'sticky',
                 opacity: 0.95,
                 zIndex: (theme) => theme.zIndex.drawer + 1
 
