@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, Container } from "@mui/material";
 import NavigationBar from "./NavigationBar";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -10,13 +10,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Link from "@/lib/Link";
-import NoSsr from "@mui/base/NoSsr";
+// import NoSsr from "@mui/base/NoSsr";
 
 // import Link from "next/link";
 function DashboardLayout({ children }) {
   const [value, setValue] = React.useState(0);
   return (
-    <NoSsr>
       <Stack
         width={"100vw"}
         height={"100vh"}
@@ -26,9 +25,9 @@ function DashboardLayout({ children }) {
         <NavigationBar />
 
         {/* tab section */}
-        <Box component={"section"} flexGrow={1} sx={{}}>
+        <Container component={"section"} >
           {children}
-        </Box>
+        </Container>
         <Paper
           sx={{
             position: "fixed",
@@ -64,13 +63,13 @@ function DashboardLayout({ children }) {
               label="handicrafts"
               icon={<PeopleOutlineIcon />}
               component={Link}
-              href="/handicraft/dashboard/handicrafts"
+              href="/handicrafts"
             />
             <BottomNavigationAction
               label="items"
               icon={<ShoppingCartIcon />}
               component={Link}
-              href="/handicraft/dashboard/items"
+              href="/items"
             />
             <BottomNavigationAction
               label="publish"
@@ -87,7 +86,6 @@ function DashboardLayout({ children }) {
           </BottomNavigation>
         </Paper>
       </Stack>
-    </NoSsr>
   );
 }
 

@@ -111,7 +111,7 @@ function Items({ items }) {
             md={4}
             lg={3}
             key={item._id}
-            onClick={() => handleClickOpen(item)}
+            
           >
             <Paper
               elevation={3}
@@ -152,6 +152,7 @@ function Items({ items }) {
                   objectFit: "cover",
                   flexGrow: 1,
                 }}
+                onClick={() => handleClickOpen(item)}
               />
 
               <Stack flexDirection={"row"} justifyContent={"space-between"}>

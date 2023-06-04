@@ -74,7 +74,7 @@ function HandicraftsTab() {
               >
                 {/* handicraft image */}
                 <img
-                  src={"/uploads/profileImage/1685034914503.png"}
+                  src={handicraft.profileImage}
                   alt={handicraft.fullName}
                   style={{ width: "90%", borderRadius: "50%" }}
                 />

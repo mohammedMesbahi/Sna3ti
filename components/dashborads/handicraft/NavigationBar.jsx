@@ -78,7 +78,7 @@ function NavigationBar() {
           </Stack>
         </Link>
         <Link
-          href="/handicraft/dashboard/handicrafts"
+          href="/handicrafts"
           className={Navcss.navbar__link}          
         >
           <Stack
@@ -91,7 +91,7 @@ function NavigationBar() {
           </Stack>
         </Link>
         <Link
-          href="/handicraft/dashboard/items"
+          href="/items"
           className={Navcss.navbar__link}          
         >
           <Stack

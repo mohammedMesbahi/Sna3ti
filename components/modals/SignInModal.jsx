@@ -50,10 +50,8 @@ export default function SignInModal({ open, setOpen }) {
       setButtonColor("success");
       dispatch(loginUser(res.user));
       console.log(res.user);
-
-      if (res.user.role === "admin") {
-        router.push("/admin/dashboard");
-      } else if (res.user.role === "handicraft") {
+      
+      if (res.user.role === "handicraft") {
         router.push("/handicraft/dashboard");
       } else {
         router.push("/items");
