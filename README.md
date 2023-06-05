@@ -1,6 +1,8 @@
 # MYCRAFT-frontend
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/79e99f6d-3bfd-44c4-8459-8a2b234d92ea)
 
+![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/83a9f2a6-4088-44f4-9bfd-fe49fc7f9f45)
+
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/fe63dcdc-0316-4566-ae9e-b35353eb8ce1)
 
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/131f94d3-a45e-440e-80d3-dc0d4ebd0ba0)
