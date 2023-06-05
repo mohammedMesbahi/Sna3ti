@@ -1,18 +1,11 @@
-import {
-  Card,
-  Rating,
-  Stack,
-  Typography,
-  Box,
-  Grid,
-  NoSsr,
-} from "@mui/material";
-// import { useSelector } from "react-redux";
-// import Image from "next/image";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Rating from "@mui/material/Rating";
+import { useEffect,useState } from "react";
 import MyItem from "./MyItem";
 import Error from "@/components/Error";
-import useSWR from "swr";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 import Skeleton from "@mui/material/Skeleton";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
@@ -50,15 +43,26 @@ function ProfileTab() {
           </Stack>
         </Stack>
       </Box>
-      <NoSsr>
-        <ItemsContainer></ItemsContainer>
-      </NoSsr>
+      <ItemsContainer></ItemsContainer>
     </Stack>
   );
 }
 export default ProfileTab;
 function ItemsContainer() {
-  const { data, error } = useSWR("/api/handicrafts/myProfile", fetcher);
+  // const { data, error } = useSWR("/api/handicrafts/myProfile", fetcher)
+  const [data,setData] = useState(null)
+  const [error,setError] = useState(null)
+  useEffect(()=>{
+    fetch("/api/handicrafts/myProfile")
+    .then((res)=>res.json())
+    .then((data)=>{
+      setData(data.data)
+    })
+    .catch((error)=>{
+      setError(error)
+      console.log(error);
+    })
+  },[])
 
   if (error) return <Error error={error} />;
   if (!data)
@@ -99,7 +103,7 @@ function ItemsContainer() {
   return (
     <Stack flexGrow={1} overflow={"auto"} p={2} gap={2}>
       <Grid container component={"section"} spacing={1}>
-        {data.data.items?.map((item) => (
+        {data.items.map((item) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
             <MyItem item={item} />
           </Grid>

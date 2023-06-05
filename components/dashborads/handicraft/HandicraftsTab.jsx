@@ -14,7 +14,7 @@ import Pagination from "@mui/material/Pagination";
 import Skeleton from "@mui/material/Skeleton";
 import { HandicraftSearchBar } from "./SearchBars";
 import HandicraftsTabSkeleton from "./HandicraftsTabSkeleton";
-import Link from "@/lib/Link";
+import Link from "next/link";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function HandicraftsTab() {

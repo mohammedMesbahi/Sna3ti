@@ -9,7 +9,7 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
-import Link from "@/lib/Link";
+import Link from "next/link";
 // import NoSsr from "@mui/base/NoSsr";
 
 // import Link from "next/link";

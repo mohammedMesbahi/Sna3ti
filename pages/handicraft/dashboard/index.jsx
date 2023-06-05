@@ -4,9 +4,11 @@ import ProfileTab from "@/components/dashborads/handicraft/ProfileTab";
 // import NoSsr from "@mui/base/NoSsr";
 
 function Dashboard() {
-  return <ProfileTab />;
+  return (
+    <DashboardLayout>
+      <ProfileTab />
+    </DashboardLayout>
+  );
 }
-Dashboard.getLayout = function getLayout(page) {
-  return <DashboardLayout>{page}</DashboardLayout>;
-};
+
 export default Dashboard;

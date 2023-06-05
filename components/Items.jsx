@@ -3,7 +3,7 @@ import { Avatar, Container, Divider, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Rating from "@mui/material/Rating";
 import { IconButton, Stack, Typography, Box, Button } from "@mui/material";
-import Link from "@/lib/Link";
+import Link from "next/link";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { Pagination as MuiPagination } from "@mui/material";

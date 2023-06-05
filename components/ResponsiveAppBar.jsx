@@ -24,7 +24,7 @@ import Logout from "@mui/icons-material/Logout";
 import Divider from "@mui/material/Divider";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { ListItemIcon } from "@mui/material";
-import Link from "@/lib/Link";
+import Link from "next/link";
 import Image from "next/image";
 import NoSsr from "@mui/base/NoSsr";
 import SignInModal from "@/components/modals/SignInModal";

@@ -11,7 +11,7 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import Groups2Icon from '@mui/icons-material/Groups2';
-import Link from "@/lib/Link";
+import Link from "next/link";
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton component={Link} href="/admin/dashboard/new-handicrafts">

@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 function Error({ error }) {
+  console.log(error);
   return (
     <Box
       display="flex"

@@ -2,7 +2,7 @@ import React from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Link from '@/lib/Link';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import AdminDashboardLayout from "@/components/dashborads/admin/AdminDashboardLayout";
 

@@ -14,7 +14,7 @@ import CallIcon from "@mui/icons-material/Call";
 import Divider from "@mui/material/Divider";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Modal from "@mui/material/Modal";
-import Link from "@/lib/Link";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
