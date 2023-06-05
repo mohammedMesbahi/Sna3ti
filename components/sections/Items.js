@@ -53,8 +53,8 @@ function Items() {
                                 src="/images/image6.jpg"
                                 loading="lazy"
                                 alt="items"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>
@@ -78,8 +78,8 @@ function Items() {
                                 src="/images/image6.jpg"
                                 loading="lazy"
                                 alt="items"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>
@@ -103,8 +103,8 @@ function Items() {
                                 src="/images/image6.jpg"
                                 loading="lazy"
                                 alt="items"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>

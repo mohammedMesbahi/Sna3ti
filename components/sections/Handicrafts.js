@@ -58,8 +58,8 @@ function Handicrafts() {
                                 src="/images/embroidery.png"
                                 loading="lazy"
                                 alt="handicfraft"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>
@@ -83,8 +83,8 @@ function Handicrafts() {
                                 src="/images/embroidery.png"
                                 loading="lazy"
                                 alt="handicfraft"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>
@@ -108,8 +108,8 @@ function Handicrafts() {
                                 src="/images/embroidery.png"
                                 loading="lazy"
                                 alt="handicfraft"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>
@@ -133,8 +133,8 @@ function Handicrafts() {
                                 src="/images/embroidery.png"
                                 loading="lazy"
                                 alt="handicfraft"
-                                width={200}
-                                height={200}
+                                width={300}
+                                height={300}
                                 style={{ borderRadius: '50%' }}
                             >
                             </Image>

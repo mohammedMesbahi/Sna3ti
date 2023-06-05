@@ -34,7 +34,7 @@ export default function RegistrationModal({ open, setOpen }) {
             onChange={(event, newView) => setView(newView)}
             aria-label="Tabs example"
             centered
-            sx={{ display: showTabList ? "block" : "none" }}
+            sx={{ display: showTabList ? "block" : "none",borderBottom:'1px solid #eee' }}
           >
             <Tab
               icon={<HandymanIcon />}
@@ -53,7 +53,7 @@ export default function RegistrationModal({ open, setOpen }) {
             <HandiCraftRegistrationForm setShowTabList={setShowTabList} ></HandiCraftRegistrationForm>
           </TabPanel>
           <TabPanel value="2">
-            <CustomerRegistrationForm></CustomerRegistrationForm>
+            <CustomerRegistrationForm setShowTabList={setShowTabList}></CustomerRegistrationForm>
           </TabPanel>
         </TabContext>
         <IconButton

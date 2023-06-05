@@ -25,23 +25,20 @@ const Navbar = () => {
             },
             cursor: 'pointer'
         }} >
-            <ListItem onClick={() => document.getElementById('home').scrollIntoView({ behavior: 'smooth' })}>
-                <ListItemText primary="Home" />
+            <ListItem >
+                <Button variant='text' href='#home' sx={{ color: 'inherit' }} >Home</Button>
             </ListItem>
-            <ListItem onClick={() => document.getElementById('handicrafts').scrollIntoView({ behavior: 'smooth' })}>
-                <ListItemText primary="Handicrafts" />
+            <ListItem >
+                <Button variant='text' href='#handicrafts' sx={{ color: 'inherit' }} >Handicrafts</Button>
             </ListItem>
-            <ListItem onClick={() => document.getElementById('items').scrollIntoView({ behavior: 'smooth' })}>
-                <ListItemText primary="Items" />
+            <ListItem >
+                <Button variant='text' href='#items' sx={{ color: 'inherit' }} >Items</Button>
             </ListItem>
-            <ListItem onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
-                <ListItemText primary="About" />
+            <ListItem >
+                <Button variant='text' href='#about' sx={{ color: 'inherit' }} >About</Button>
             </ListItem>
-            <ListItem onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
-                <ListItemText primary="Contact" />
-                {/* <Link href="#contact" underline="hover" variant='body1'>
-                    Contact
-                </Link> */}
+            <ListItem >
+                <Button variant='text' href='#contact' sx={{ color: 'inherit' }} >Contacts</Button>
             </ListItem>
         </List>
 
@@ -80,7 +77,7 @@ const Navbar = () => {
                 color: 'black',
                 position: 'sticky',
                 opacity: 0.95,
-                zIndex: (theme) => theme.zIndex.drawer + 1
+                // zIndex: (theme) => theme.zIndex.drawer + 1
 
             }}
             >
