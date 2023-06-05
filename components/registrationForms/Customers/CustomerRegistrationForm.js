@@ -12,8 +12,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const CustomerRegistrationForm = ({ setShowTabList }) => {
   const [userDetails, setUserDetails] = useState({
-    fullName: "customer2",
-    email: "cusomter2@gmail.com",
+    fullName: "customer",
+    email: "customer@gmail.com",
     password: "123456789",
     phoneNumber: "+212612345611",
     profileImage: undefined,
