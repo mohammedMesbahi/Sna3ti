@@ -208,7 +208,7 @@ function ItemsContainer() {
       >
         {Array(10)
           .fill()
-          .map((index) => (
+          .map((number,index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <Paper
                 elevation={3}

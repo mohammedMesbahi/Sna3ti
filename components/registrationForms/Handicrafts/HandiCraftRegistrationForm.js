@@ -111,7 +111,7 @@ const HandiCraftRegistrationForm = ({ setShowTabList }) => {
         {alertMessage}
       </Alert>
     </Collapse>
-    <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid container spacing={2}>
       {/* full name */}
       <Grid item xs={12} md={6}>
         <TextField
@@ -243,9 +243,9 @@ const HandiCraftRegistrationForm = ({ setShowTabList }) => {
           >
             <span>Submit</span>
           </LoadingButton>
-          <Button variant="outlined" color="primary" onClick={() => { setStep('verification') }} >
+          {/* <Button variant="outlined" color="primary" onClick={() => { setStep('verification') }} >
             next
-          </Button>
+          </Button> */}
         </Stack>
       </Grid>
     </Grid>

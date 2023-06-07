@@ -3,9 +3,10 @@ import Navbar from "@/components/Navbar";
 import '@fontsource/public-sans';
 import dynamic from 'next/dynamic';
 
-const DynamicSwiperWithNoSSR = dynamic(() => import('@/components/sections/Handicrafts_Items'), {
+/* const DynamicSwiperWithNoSSR = dynamic(() => import('@/components/sections/Handicrafts_Items'), {
   ssr: false, // This line will handle the server-rendering
-});
+}); */
+import DynamicSwiperWithNoSSR from '@/components/sections/Handicrafts_Items'
 // import Handicrafts_Items from '@/components/sections/Handicrafts_Items';
 export default function HomePage() {
   return (

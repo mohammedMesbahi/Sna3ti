@@ -9,7 +9,7 @@ function Handicrafts_Items() {
         width={'100%'}
         sx={{
           height: {
-            md: '70vh'
+            md: '80vh'
           }
         }}
         spacing={{ xs: 2, sm: 0 }}

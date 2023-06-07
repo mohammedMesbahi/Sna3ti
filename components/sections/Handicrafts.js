@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import { Button, Card, CardContent, CardMedia, Stack, Typography } from '@mui/material'
+import { Button, Card, CardContent, CardMedia, NoSsr, Stack, Typography } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from '@mui/material/Rating';
 import 'swiper/css';
@@ -20,7 +20,7 @@ function Handicrafts() {
                     md: '50%',
                 },
                 height: {
-                    xs:'65vh',
+                    xs:'85vh',
                     md: '100%',
                 },
                 borderRight:{
@@ -37,6 +37,7 @@ function Handicrafts() {
             alignItems={'center'}
             justifyContent={'center'}
         >
+            <NoSsr>
             <Swiper
                 modules={[Pagination, A11y, Autoplay]}
                 slidesPerView={1}
@@ -153,6 +154,7 @@ function Handicrafts() {
                 </SwiperSlide>
                 {/* Add more slides as needed */}
             </Swiper>
+            </NoSsr>
             <Button variant='contained' sx={{ width: {xs:'90%',sm:'40%'}, mt: 2 }}>
                 <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
                     View All Handicrafts

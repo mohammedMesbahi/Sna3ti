@@ -87,7 +87,7 @@ function MyItem({ item }) {
         width: "100%",
         height: 330,
       }}
-      key={item._id}
+      // key={item._id}
     >
       <Stack flexDirection={"row"} gap={1} alignItems={"center"}>
         <Typography fontSize={20} fontWeight="lg" flexGrow={1}>
