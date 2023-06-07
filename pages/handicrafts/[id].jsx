@@ -517,7 +517,7 @@ HandicraftProfile.getLayout = function getLayout(page) {
 };
 export default HandicraftProfile;
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
   try {
     const res = await axios.get(
       "http://localhost:3000/api/resources/handicrafts"
@@ -535,14 +535,32 @@ export async function getStaticPaths() {
       notFound: true,
     };
   }
-}
+} */
 
-export async function getStaticProps({ params }) {
+/* export async function getStaticProps({ params }) {
   try {
     const res = await axios.get(
       `http://localhost:3000/api/resources/handicrafts/${params.id}?includeItems=true`
     );
     const handicraft = res.data.data[0];
+
+    return {
+      props: { handicraft },
+    };
+  } catch (error) {
+    console.error(`Error fetching data: ${error}`);
+    return {
+      notFound: true,
+    };
+  }
+} */
+
+export async function getServerSideProps({ params }) {
+  try {
+    const res = await axios.get(
+      `http://localhost:3000/api/resources/handicrafts/${params.id}?includeItems=true`
+    );
+    const handicraft = await res.data.data[0];
 
     return {
       props: { handicraft },

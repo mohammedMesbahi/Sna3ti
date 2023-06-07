@@ -1,12 +1,12 @@
 import React from "react";
+import ProfileTab from "@/components/dashborads/handicraft/ProfileTab";
 import DefualtLayout from "@/components/dashborads/DefualtLayout";
-import AccountTab from "@/components/dashborads/customer/AcountTab";
-function settings() {
+function profile() {
   return (
     <DefualtLayout>
-      <AccountTab />
+      <ProfileTab />
     </DefualtLayout>
   );
 }
 
-export default settings;
+export default profile;

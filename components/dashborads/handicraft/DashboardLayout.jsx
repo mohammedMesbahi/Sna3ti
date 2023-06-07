@@ -25,7 +25,7 @@ function DashboardLayout({ children }) {
         <NavigationBar />
 
         {/* tab section */}
-        <Container component={"section"} >
+        <Container component={"section"} height='90%' >
           {children}
         </Container>
         <Paper

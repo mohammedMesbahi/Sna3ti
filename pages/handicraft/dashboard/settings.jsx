@@ -1,13 +1,13 @@
-import AccountTab from '@/components/dashborads/handicraft/Settings'
-import React from 'react'
-import DashboardLayout from '@/components/dashborads/handicraft/DashboardLayout'
-import EditProfileTab from '@/components/dashborads/handicraft/EditProfileTab';
+import AccountTab from "@/components/dashborads/handicraft/Settings";
+import React from "react";
+import DashboardLayout from "@/components/dashborads/handicraft/DashboardLayout";
+import EditProfileTab from "@/components/dashborads/handicraft/EditProfileTab";
 function accountSettings() {
   return (
-    <AccountTab></AccountTab>
-  )
+    <DashboardLayout>
+      <AccountTab></AccountTab>
+    </DashboardLayout>
+  );
 }
-accountSettings.getLayout = function getLayout(page) {
-  return <DashboardLayout>{page}</DashboardLayout>;
-};
-export default accountSettings
+
+export default accountSettings;

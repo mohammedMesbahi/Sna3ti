@@ -11,9 +11,9 @@ NProgress.configure({
   speed: 500,
   template: `<div class="bar" role="bar" style="height: 4px; z-index: 9999;"></div>`,
 });
-Router.events.on('routeChangeStart', () => {console.log('start');NProgress.start()});
-Router.events.on('routeChangeComplete', () => {console.log('start');NProgress.done()});
-Router.events.on('routeChangeError', () => {console.log('error');NProgress.done()});
+Router.events.on('routeChangeStart', () => { NProgress.start() });
+Router.events.on('routeChangeComplete', () => { NProgress.done() });
+Router.events.on('routeChangeError', () => { NProgress.done() });
 
 
 const theme = createTheme({

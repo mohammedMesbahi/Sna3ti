@@ -11,11 +11,8 @@ function EditProfileTab() {
   const [userDetails, setUserDetails] = React.useState({
     fullName: "",
     email: "",
-    password: "",
     phoneNumber: "",
-    address: "",
     profileImageName: null,
-    carft: "",
   });
   const [profileImageName, setProfileImageName] = React.useState(undefined);
 
@@ -61,7 +58,7 @@ function EditProfileTab() {
         spacing={2}
       >
         {/* full name */}
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} >
           <TextField
             name="fullName"
             label="Full Name"
@@ -79,7 +76,7 @@ function EditProfileTab() {
         </Grid>
 
         {/* profile image */}
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} >
           <input
             // className={classes.input}
             style={{ display: "none" }}
@@ -96,37 +93,7 @@ function EditProfileTab() {
           </label>
         </Grid>
 
-        {/* craft */}
-        <Grid item xs={12} md={5}>
-          <FormControl required fullWidth size="small">
-            <InputLabel id="demo-simple-select-label">Craft</InputLabel>
-            <Select
-              name="craft"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={20}
-              label="craft"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-
-        {/* address */}
-        <Grid item xs={12} >
-          <TextField
-            name="address"
-            label="Address"
-            required
-            fullWidth
-            size="small"
-            //TODO: remove the default value
-            defaultValue="Address 123 Imb Park, Morocco"
-          />
-        </Grid>
-
+        
         {/* email */}
         <Grid item xs={12} >
           <TextField
@@ -161,7 +128,7 @@ function EditProfileTab() {
         </Grid>
 
         <Grid item xs={12}>
-          <Button type="submit" size={'large'} variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             save
           </Button>
         </Grid>

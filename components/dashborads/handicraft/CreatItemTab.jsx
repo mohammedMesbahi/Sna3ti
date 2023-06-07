@@ -2,7 +2,7 @@ import { TextField, Typography, Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUpRightFromSquare as faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Grid, Stack, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
@@ -81,12 +81,23 @@ const CreatItemTab = () => {
   return (
     <Stack
       component={"section"}
-      height={"100%"}
-      width={"100%"}
-      alignItems={"center"}
-      justifyContent={"center"}
+      sx={{
+        //q add box shadow
+        boxShadow: {
+          xs: `0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)`,
+          md: `0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)`,
+        },
+        width: {
+          xs: 11 / 12,
+          md: 10 / 12,
+        },
+        margin: "auto",
+        marginTop: 2,
+        height: "80%",
+        padding: 1,
+      }}
     >
-      <Box display={"flex"} gap={2} alignItems={"center"}>
+      <Box display={"flex"} mt={4} gap={2} width={'100%'} justifyContent={'center'} alignItems={"center"}>
         <Typography variant={"h6"} display={{ xs: "flex", md: "none" }}>
           Publish An Item
         </Typography>
@@ -115,16 +126,19 @@ const CreatItemTab = () => {
       </Collapse>
       <form
         onSubmit={handleSubmit}
-        style={{ height: "60%", alignSelf: "center" }}
         onChange={() => setOpenAlert(false)}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          alignItems: "center",
+        }}
       >
         <Grid
           container
-          rowSpacing={2}
-          columnSpacing={{ md: 1 }}
-          width={{ xs: "100%", md: "60%" }}
-          margin={{ xs: "0", md: "auto" }}
-          flexDirection={{ xs: "column", md: "row" }}
+          spacing={2}
+          width={{ xs: 11 / 12, md: 10 / 12 }}
+          
         >
           <Grid item xs={12}>
             <TextField
@@ -137,7 +151,7 @@ const CreatItemTab = () => {
             />
           </Grid>
 
-          <Grid item md={3}>
+          <Grid item xs={12} md={3}>
             <TextField
               name="price"
               label="Price"
@@ -152,7 +166,7 @@ const CreatItemTab = () => {
             />
           </Grid>
 
-          <Grid item md={9}>
+          <Grid item xs={12} md={9}>
             <TextField
               name="description"
               label="Description"
@@ -184,18 +198,18 @@ const CreatItemTab = () => {
             </label>
           </Grid>
           <Grid item>
-          <LoadingButton
-            loading={submitting}
-            type="submit"
-            variant="contained"
-            sx={{
-              alignSelf: "center",
-              justifySelf: "center",
-            }}
-            size="large"
-          >
-            <span>Submit</span>
-          </LoadingButton>
+            <LoadingButton
+              loading={submitting}
+              type="submit"
+              variant="contained"
+              sx={{
+                alignSelf: "center",
+                justifySelf: "center",
+              }}
+              size="large"
+            >
+              <span>Submit</span>
+            </LoadingButton>
           </Grid>
         </Grid>
       </form>

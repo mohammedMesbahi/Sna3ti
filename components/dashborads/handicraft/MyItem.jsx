@@ -84,7 +84,8 @@ function MyItem({ item }) {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        width:'100%'
+        width: "100%",
+        height: 330,
       }}
       key={item._id}
     >
@@ -97,8 +98,23 @@ function MyItem({ item }) {
           size="2x"
         />
       </Stack>
-
-      <img src={item.images[0]} width={"100%"} style={{ borderRadius: 10 }} />
+      <Box
+        sx={{
+          height: 200,
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={item.images[0]}
+          
+          style={{ maxWidth: "100%",
+          minWidth: "100%",
+          minHeight: '100%',
+          maxHeight: '100%',
+          borderRadius: 10,
+          objectFit: "cover",}}
+        />
+      </Box>
 
       <Stack>
         <Typography variant="subtitle1" fontWeight={"bold"} flexGrow={1}>
