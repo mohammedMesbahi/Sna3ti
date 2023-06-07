@@ -6,3 +6,15 @@ export const loginUser = (user) => ({
 export const logoutUser = () => ({
     type: 'LOGOUT',
 });
+export const addFollowing = (following) => ({
+    type: 'ADD_FOLLOWING',
+    payload: following,
+});
+export const removeFollowing = (following) => ({
+    type: 'REMOVE_FOLLOWING',
+    payload: following,
+});
+export const updateRatedHandicrafts = (data) => ({
+    type: 'UPDATE_RATEDHANDICRAFTS',
+    payload: data,
+});

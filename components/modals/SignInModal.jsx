@@ -21,7 +21,7 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import { useRouter } from "next/router";
 export default function SignInModal({ open, setOpen }) {
-  const [email, setEmail] = useState("anas@gmail.com");
+  const [email, setEmail] = useState("customer4@gmail.com");
   const [password, setPassword] = useState("123456789");
   const [submitting, setSubmitting] = useState(false);
   const [buttonColor, setButtonColor] = useState("primary");
@@ -55,6 +55,9 @@ export default function SignInModal({ open, setOpen }) {
         router.push("/handicraft/dashboard");
       } else {
         router.push("/items");
+        let response = await fetch("/api/customers/profile")
+        let res = await response.json()
+        dispatch(loginUser(res.data))
       }
     } else {
       setOpenAlert(true);

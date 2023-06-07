@@ -187,7 +187,7 @@ function ResponsiveAppBar() {
               </Button>
 
               <Button
-                key={'handicrafts'}
+                key={"handicrafts"}
                 // onClick={handleCloseNavMenu}
                 component={Link}
                 href={`/handicrafts`}
@@ -203,7 +203,7 @@ function ResponsiveAppBar() {
               </Button>
 
               <Button
-                key={'items'}
+                key={"items"}
                 // onClick={handleCloseNavMenu}
                 component={Link}
                 href={`/items`}
@@ -218,27 +218,28 @@ function ResponsiveAppBar() {
                 items
               </Button>
             </Box>
-
-            {user ? (
-              <CustomMenu
-                user={user}
-                handleOpenUserMenu={handleOpenUserMenu}
-                anchorElUser={anchorElUser}
-                handleCloseUserMenu={handleCloseUserMenu}
-              />
-            ) : (
-              <Button
-                onClick={() => setOpenSignIn(true)}
-                sx={{
-                  my: 2,
-                  px: { xs: 2, md: 4 },
-                  color: "white",
-                  backgroundColor: "black",
-                }}
-              >
-                Login
-              </Button>
-            )}
+            <NoSsr>
+              {user && user.role ? (
+                <CustomMenu
+                  user={user}
+                  handleOpenUserMenu={handleOpenUserMenu}
+                  anchorElUser={anchorElUser}
+                  handleCloseUserMenu={handleCloseUserMenu}
+                />
+              ) : (
+                <Button
+                  onClick={() => setOpenSignIn(true)}
+                  sx={{
+                    my: 2,
+                    px: { xs: 2, md: 4 },
+                    color: "white",
+                    backgroundColor: "black",
+                  }}
+                >
+                  Login
+                </Button>
+              )}
+            </NoSsr>
           </Toolbar>
         </Container>
       </AppBar>
@@ -246,12 +247,28 @@ function ResponsiveAppBar() {
     </>
   );
 }
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "@/reduxFolder/actions/userActions";
+/* custome menu for users */
 const CustomMenu = ({
   user,
   handleOpenUserMenu,
   anchorElUser,
   handleCloseUserMenu,
 }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    const response = await fetch("/api/auth/logout", { method: "POST" });
+    const data = await response.json();
+    if (response.ok) {
+      dispatch(logoutUser());
+      router.push("/");
+    } else {
+      console.log("logout failed", data);
+    }
+  };
   if (user.role == "handicraft") {
     return (
       <Box sx={{ flexGrow: 0 }}>
@@ -308,7 +325,7 @@ const CustomMenu = ({
             Settings
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
@@ -366,7 +383,7 @@ const CustomMenu = ({
           Bookmared
         </MenuItem>
 
-        <MenuItem>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

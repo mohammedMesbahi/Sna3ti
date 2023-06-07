@@ -16,7 +16,13 @@ import { HandicraftSearchBar } from "./SearchBars";
 import HandicraftsTabSkeleton from "./HandicraftsTabSkeleton";
 import Link from "next/link";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
+function calculateAverageRating(ratings) {
+  let sum = 0;
+  for (let i = 0; i < ratings.length; i++) {
+    sum += ratings[i].rate;
+  }
+  return sum / ratings.length;
+}
 function HandicraftsTab() {
   const { data, error } = useSWR("/api/resources/handicrafts", fetcher);
 
@@ -92,12 +98,12 @@ function HandicraftsTab() {
                   <Stack flexDirection={"row"} alignItems={"center"}>
                     <Rating
                       name="read-only"
-                      value={3.5}
+                      value={calculateAverageRating(handicraft.rates)}
                       precision={0.5}
                       readOnly
                     />
                     <Typography variant="body2" color="text.secondary">
-                      (2 reviews)
+                      ({handicraft.rates.length} reviews)
                     </Typography>
                   </Stack>
                 </Stack>

@@ -1,6 +1,15 @@
 import React from "react";
 import axios from "axios";
-import { Box, Container, Grid, Paper, Stack, Typography,Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+  Button,
+  NoSsr,
+} from "@mui/material";
 import Rating from "@mui/material/Rating";
 import ItemCard from "@/components/shared/ItemCard";
 import ItemModale from "@/components/shared/ItemModale";
@@ -23,9 +32,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addFollowing,
+  removeFollowing,
+} from "@/reduxFolder/actions/userActions";
+import HoverRating from "@/components/HoverRating";
 function HandicraftProfile({ handicraft: user }) {
   const [selectedItem, setSelectedItem] = React.useState({});
   const [openModale, setOpenModale] = React.useState(false);
+
+  const despatch = useDispatch();
+  /* connected user */
+  const connectedUser = useSelector((state) => state.user);
+
   const clickHandler = (item) => {
     setSelectedItem(item);
     setOpenModale(true);
@@ -96,6 +116,28 @@ function HandicraftProfile({ handicraft: user }) {
     border: "none",
     borderRadius: "10px",
   };
+  const handelfollow = async () => {
+    let res;
+    if (isFollowing) {
+      res = await fetch(`/api/customers/unfollow-handicraft/${user._id}`, {
+        method: "POST",
+      });
+      despatch(removeFollowing(user._id));
+      setIsFollowing(false);
+    } else {
+      res = await fetch(`/api/customers/follow-handicraft/${user._id}`, {
+        method: "POST",
+      });
+      despatch(addFollowing(user._id));
+      setIsFollowing(true);
+    }
+    const data = await res.json();
+    console.log(data);
+  };
+  const [isFollowing, setIsFollowing] = React.useState(
+    connectedUser && connectedUser.following?.includes(user._id)
+  );
+
   return (
     <Box
       sx={{
@@ -154,12 +196,25 @@ function HandicraftProfile({ handicraft: user }) {
             <Typography variant="h5" sx={{ textAlign: { md: "center" } }}>
               {user.fullName}
             </Typography>
-            <Stack direction="row" spacing={2} alignItems={"center"}>
-              <Typography variant="subtitle1" display={"inline"}>
-                {user.craft}
-              </Typography>
-              <Rating name="read-only" value={0} precision={0.5} />
-            </Stack>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: { md: "center" } }}
+              display={"inline"}
+            >
+              {user.craft}
+            </Typography>
+            {/* <Rating name="read-only" value={0} precision={0.5} /> */}
+            <NoSsr>
+              <HoverRating handicraft={user}></HoverRating>
+            </NoSsr>
+            {/* follow button */}
+            <NoSsr>
+              {connectedUser && connectedUser.role == "customer" && (
+                <Button variant="contained" size="small" onClick={handelfollow}>
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </Button>
+              )}
+            </NoSsr>
           </Stack>
         </Stack>
         <Accordion defaultExpanded={true} sx={{ border: "1px solid #e0e0e0" }}>
