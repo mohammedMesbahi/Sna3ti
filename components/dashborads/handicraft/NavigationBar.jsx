@@ -7,6 +7,7 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import ArchiveIcon from '@mui/icons-material/Archive';
 import SettingsIcon from "@mui/icons-material/Settings";
 import Navcss from "@/styles/NavBar.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -114,6 +115,19 @@ function NavigationBar() {
             alignItems={"center"}
           >
             <AddCircleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "publish item" : ""}
+          </Stack>
+        </Link>
+        <Link
+          href="/handicraft/dashboard/archived-items"
+          className={Navcss.navbar__link}          
+        >
+          <Stack
+            variant="body2"
+            flexDirection={"row"}
+            spacing={1}
+            alignItems={"center"}
+          >
+            <ArchiveIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "archived items" : ""}
           </Stack>
         </Link>
         <Link

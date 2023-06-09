@@ -175,9 +175,9 @@ const CustomerRegistrationForm = ({ setShowTabList }) => {
           <Button type="submit" variant="contained" color="primary" disabled={submitting} >
             submit
           </Button>
-          <Button variant="outlined" color="primary" onClick={() => { setStep('verification') }} >
+          {/* <Button variant="outlined" color="primary" onClick={() => { setStep('verification') }} >
             next
-          </Button>
+          </Button> */}
         </Stack>
       </Grid>
     </Grid>

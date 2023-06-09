@@ -3,8 +3,8 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import { useSelector, useDispatch } from "react-redux";
+import { updateRatedItems } from "@/reduxFolder/actions/userActions";
 import axios from "axios";
-import { updateRatedHandicrafts } from "@/reduxFolder/actions/userActions";
 const labels = {
   0.5: "Useless",
   1: "Useless+",
@@ -21,7 +21,9 @@ const labels = {
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
+
 function calculateAverageRating(rates) {
+  console.log("rates", rates);
   let sum = 0;
   if (rates.length === 0) return 0;
   rates.forEach((rate) => {
@@ -29,55 +31,45 @@ function calculateAverageRating(rates) {
   });
   return sum / rates.length;
 }
-function selectRatingValue(handicraft, connectedUser) {
+
+function selectRatingValue(item, connectedUser) {
   if (connectedUser && connectedUser.role === "customer") {
-    const rate = connectedUser.ratedHandicrafts.find(
-      (rating) => rating.handicraftId === handicraft._id
-    );
-    if (rate) return rate.rate;
-    else return calculateAverageRating(handicraft.rates);
+    const rate = connectedUser.ratedItems.find(
+      (rating) => rating.itemId === item._id
+    )?.rate;
+    if(rate) return rate;
+    else return calculateAverageRating(item.rates);
   } else {
-    return calculateAverageRating(handicraft.rates);
+    return calculateAverageRating(item.rates);
   }
 }
-export default function HoverRating({ handicraft }) {
+
+export default function HoverRatingItem({ item }) {
   const connectedUser = useSelector((state) => state.user) || {};
-  const [hover, setHover] = React.useState(-1);
-  const dispatch = useDispatch();
 
   const [value, setValue] = React.useState(
-    selectRatingValue(handicraft, connectedUser)
+    selectRatingValue(item, connectedUser)
   );
+
+  const [hover, setHover] = React.useState(-1);
+
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    setValue(selectRatingValue(handicraft, connectedUser));
-  }, [connectedUser.ratedHandicrafts]);
+    setValue(selectRatingValue(item, connectedUser));
+    console.log("useEffect");
+  }, [connectedUser.ratedItems]);
 
   const handleChange = async (event, newValue) => {
     setValue(newValue);
     try {
-      const response = await axios.post(`/api/customers/rate-handicraft/${handicraft._id}`, {
-        rating: newValue,
-      });
-      // dispatch(updateRatedHandicrafts(handicraft._id, newValue));
-      dispatch(updateRatedHandicrafts(response.data.data))
-
+      //q use axios
+      let url = `/api/customers/rate-item/${item._id}`;
+      let response = await axios.post(url, { rating: newValue });
+      dispatch(updateRatedItems(response.data.data));
     } catch (error) {
       console.log(error);
     }
-    /* let url = `/api/customers/rate-handicraft/${handicraft._id}`;
-    let response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rating: newValue }),
-    });
-    if (response.ok) {
-      let res = await response.json();
-      console.log(res.data);
-      dispatch(updateRatedHandicrafts(res.data));
-      setValue(res.data.rate);
-    } else {
-      console.log("error");
-    } */
   };
 
   return (
@@ -92,7 +84,7 @@ export default function HoverRating({ handicraft }) {
         readOnly={connectedUser?.role !== "customer" ? true : false}
         name="hover-feedback"
         value={value}
-        // precision={connectedUser?.role !== "customer" ? 0.5 : 1}
+        precision={connectedUser?.role !== "customer" ? 0.5 : 1}
         getLabelText={getLabelText}
         onChange={handleChange}
         onChangeActive={(event, newHover) => {

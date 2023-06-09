@@ -1,7 +1,7 @@
 import { TextField, Typography, Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { faArrowUpRightFromSquare as faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import IosShareIcon from '@mui/icons-material/IosShare';
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Grid, Stack, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -101,7 +101,7 @@ const CreatItemTab = () => {
         <Typography variant={"h6"} display={{ xs: "flex", md: "none" }}>
           Publish An Item
         </Typography>
-        <FontAwesomeIcon icon={faLayerGroup} fontSize={"2rem"} />
+        <IosShareIcon fontSize="large" />
       </Box>
 
       <Collapse in={openAlert} sx={{ marginTop: 1 }}>

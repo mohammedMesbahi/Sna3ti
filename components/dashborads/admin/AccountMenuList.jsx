@@ -7,7 +7,23 @@ import Divider from "@mui/material/Divider";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutAdmin } from "@/reduxFolder/actions/adminActions";
+import { useRouter } from "next/router";
 function AccountMenuList({ anchorEl, openMenu, handleClose }) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const admin = useSelector((state) => state.admin) || {};
+  const handleLogout = async () => {
+    const response = await fetch("/api/auth/logout", { method: "POST" });
+    const data = await response.json();
+    if (response.ok) {
+      dispatch(logoutAdmin());
+      router.push("/admin/login");
+    } else {
+      console.log("logout failed", data);
+    }
+  };
   return (
     <Menu
       anchorEl={anchorEl}
@@ -45,7 +61,7 @@ function AccountMenuList({ anchorEl, openMenu, handleClose }) {
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
       <MenuItem onClick={handleClose}>
-        <Avatar /> My account
+        <Avatar src={admin.profileImage}/>{admin.fullName}
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleClose}>
@@ -60,7 +76,7 @@ function AccountMenuList({ anchorEl, openMenu, handleClose }) {
         </ListItemIcon>
         Settings
       </MenuItem>
-      <MenuItem onClick={handleClose}>
+      <MenuItem onClick={handleLogout}>
         <ListItemIcon>
           <Logout fontSize="small" />
         </ListItemIcon>

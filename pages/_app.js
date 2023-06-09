@@ -31,7 +31,6 @@ export default function App({ Component, pageProps }) {
       <Head >
         <title>MyCraft</title>
         <link rel="icon" href="/icons/mainIcon.png" />
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css' />
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>

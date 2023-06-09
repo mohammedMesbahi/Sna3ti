@@ -18,3 +18,7 @@ export const updateRatedHandicrafts = (data) => ({
     type: 'UPDATE_RATEDHANDICRAFTS',
     payload: data,
 });
+export const updateRatedItems =(data)=>({
+    type:'UPDATE_RATEDITEMS',
+    payload:data
+})

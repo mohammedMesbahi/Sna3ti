@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Container, Divider, Grid } from "@mui/material";
+import { Avatar, Container, Divider, Grid, NoSsr } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Rating from "@mui/material/Rating";
 import { IconButton, Stack, Typography, Box, Button } from "@mui/material";
@@ -90,7 +90,14 @@ function Items({ items }) {
     border: "none",
     borderRadius: "10px",
   };
-
+  function calculateAverageRating(rates) {
+    let sum = 0;
+    if (rates.length === 0) return 0;
+    rates.forEach((rate) => {
+      sum += rate.rate;
+    });
+    return sum / rates.length;
+  }
   return (
     <>
       <Grid
@@ -104,15 +111,7 @@ function Items({ items }) {
         {/* list of items */}
 
         {items.map((item) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            key={item._id}
-            
-          >
+          <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
             <Paper
               elevation={3}
               sx={{
@@ -124,8 +123,19 @@ function Items({ items }) {
               }}
               key={item._id}
             >
-              <Stack flexDirection={"row"} gap={1} alignItems={"center"}>
-                <Avatar src={item.owner.profileImage} />
+              <Stack
+                flexDirection={"row"}
+                gap={1}
+                bgcolor={"#ffee"}
+                p="3px"
+                alignItems={"center"}
+              >
+                <Avatar
+                  src={item.owner.profileImage}
+                  size="large"
+                  sx={{ width: 50, height: 50 }}
+                  alt={item.owner.fullName}
+                />
                 <Typography
                   flexGrow={1}
                   variant="subtitle1"
@@ -136,9 +146,9 @@ function Items({ items }) {
                 >
                   {item.owner.fullName}
                 </Typography>
-                <IconButton aria-label="bookmark" onClick={() => {}}>
-                  {false ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-                </IconButton>
+                <NoSsr>
+                  <CustomBookMarkedIcon />
+                </NoSsr>
               </Stack>
 
               <img
@@ -163,12 +173,12 @@ function Items({ items }) {
                   <Stack flexDirection={"row"}>
                     <Rating
                       name="read-only"
-                      value={1.5}
+                      value={calculateAverageRating(item.rates)}
                       precision={0.5}
                       readOnly
                     />
                     <Typography variant="subtitle2" color="text.secondary">
-                      (1 reviews)
+                      ({item.rates.length})
                     </Typography>
                   </Stack>
                   <Typography fontSize={"1.2rem"} alignSelf={"flex-end"}>
@@ -198,7 +208,7 @@ function Items({ items }) {
             >
               <Typography
                 variant="h5"
-                flexGrow={1}
+                // flexGrow={1}
                 display={"flex"}
                 alignItems={"center"}
               >
@@ -208,7 +218,10 @@ function Items({ items }) {
                 <Typography fontSize={"120%"} sx={{ flexGrow: 1 }}>
                   {selectedItem.price} <strong>MAD</strong>
                 </Typography>
-                <Rating value={0} precision={0.5} />
+                {/* <Rating value={0} precision={0.5} /> */}
+                <NoSsr>
+                  <HoverRatingItem item={selectedItem} />
+                </NoSsr>
               </Stack>
             </Stack>
 
@@ -336,3 +349,21 @@ function Items({ items }) {
 }
 
 export default Items;
+import { useDespatch, useSelector } from "react-redux";
+import { useState } from "react";
+import HoverRatingItem from "./HoverRatingItem";
+function CustomBookMarkedIcon() {
+  const user = useSelector((state) => state.user);
+  const [isBookmared, setIsBookmared] = useState(false);
+  // const dispatch = useDespatch();
+
+  if (user && user.role == "customer") {
+    return (
+      <IconButton aria-label="bookmark" onClick={() => {}}>
+        <BookmarkIcon /> {/* <BookmarkBorderIcon /> */}
+      </IconButton>
+    );
+  } else {
+    return <></>;
+  }
+}

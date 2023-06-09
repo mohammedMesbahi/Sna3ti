@@ -13,15 +13,14 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Tooltip from "@mui/material/Tooltip";
-import { Avatar } from "@mui/material";
+import { Avatar, NoSsr } from "@mui/material";
 import {
   mainListItems,
   secondaryListItems,
 } from "@/components/dashborads/admin/listItems";
 // import Chart from './Chart';
 import AccountMenuList from "@/components/dashborads/admin/AccountMenuList";
-
-
+import { useSelector, useDispatch } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -69,11 +68,11 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-// TODO remove, this demo shouldn't need to reset the theme.
-// const defaultTheme = createTheme();
-
-export default function AdminDashboardLayout({children}) {
+export default function AdminDashboardLayout({ children }) {
   const [open, setOpen] = React.useState(true);
+  const admin = useSelector((state) => state.admin) || {};
+  const dispatch = useDispatch();
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -130,7 +129,11 @@ export default function AdminDashboardLayout({children}) {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              <NoSsr>
+                <Avatar sx={{ width: 32, height: 32 }} src={admin.profileImage}>
+                  {admin.fullName}
+                </Avatar>
+              </NoSsr>
             </IconButton>
           </Tooltip>
           <AccountMenuList
@@ -174,9 +177,7 @@ export default function AdminDashboardLayout({children}) {
         }}
       >
         <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          {children}
-        </Container>
+        <Container sx={{ mt: 4, mb: 4}} >{children}</Container>
       </Box>
     </Box>
   );

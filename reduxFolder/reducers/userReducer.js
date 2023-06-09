@@ -16,16 +16,39 @@ const userReducer = (state = initialState, action) => {
         following: state.following.filter((following) => following !== action.payload),
       };
     case 'UPDATE_RATEDHANDICRAFTS':
-      let updatedRatedHandicrafts = state.ratedHandicrafts.map(ratedHandicraft => {
-        console.log(action.payload)
-        if (ratedHandicraft.handicraftId === action.payload.handicraftId) {
-          console.log({ handicraftId:ratedHandicraft.handicraftId, rate: action.payload.rate, })
-          return { handicraftId:ratedHandicraft.handicraftId,rate: action.payload.rate, };
-        }
-        return ratedHandicraft;
-      });
-      console.log(updatedRatedHandicrafts);
-      return { ...state, ratedHandicrafts: updatedRatedHandicrafts };
+      console.log('action.payload', action.payload);
+      let alreadyRatedThisHanidcraft = state.ratedHandicrafts.find(ratedHandicraft => ratedHandicraft.handicraftId === action.payload.handicraftId);
+      if (alreadyRatedThisHanidcraft) {
+        let updatedRatedHandicrafts = state.ratedHandicrafts.map(ratedHandicraft => {
+          if (ratedHandicraft.handicraftId === action.payload.handicraftId) {
+            return { handicraftId: ratedHandicraft.handicraftId, rate: action.payload.rate, };
+          }
+          return ratedHandicraft;
+        });
+        return { ...state, ratedHandicrafts: updatedRatedHandicrafts };
+      }
+      return { ...state, ratedHandicrafts: [...state.ratedHandicrafts, action.payload] };
+
+    case 'UPDATE_RATEDITEMS':
+      let alreadyRatedThisItem = state.ratedItems.find(ratedItem => ratedItem.itemId === action.payload.itemId);
+      if (alreadyRatedThisItem) {
+        let updatedRatedItems = state.ratedItems.map(ratedItem => {
+          if (ratedItem.itemId === action.payload.itemId) {
+            return { itemId: ratedItem.itemId, rate: action.payload.rate, };
+          }
+          return ratedItem;
+        });
+        return { ...state, ratedItems: updatedRatedItems };
+      }
+      return { ...state, ratedItems: [...state.ratedItems, action.payload] };
+      
+      // let updatedRatedItems = state.ratedItems.map(ratedItem => {
+      //   if (ratedItem.itemId === action.payload.itemId) {
+      //     return { itemId: ratedItem.itemId, rate: action.payload.rate, };
+      //   }
+      //   return ratedItem;
+      // });
+      // return { ...state, ratedItems: updatedRatedItems };
     default:
       return { ...state };
   }

@@ -1,15 +1,61 @@
 import { Box } from '@mui/system'
-import { Button, Card, CardContent, CardMedia, NoSsr, Stack, Typography } from '@mui/material'
+import { Button, NoSsr, Stack, Typography } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from '@mui/material/Rating';
 import 'swiper/css';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Pagination, A11y, Autoplay } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
+import { Skeleton } from '@mui/material';
+import { useEffect, useState } from 'react';
 function Items() {
+    const [topRatedItems, setTopRatedItems] = useState(undefined)
+    useEffect(() => {
+        axios.get('/api/resources/top-rated-items')
+            .then((res) => {
+                setTopRatedItems(res.data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [])
+
+    if (!topRatedItems) return (<Box
+        id='handicrafts'
+        component='section'
+        sx={{
+            width: {
+                xs: '100%',
+                md: '50%',
+            },
+            height: {
+                xs: '85vh',
+                md: '100%',
+            },
+            borderRight: {
+                xs: 'none',
+                md: '1px solid #e0e0e0'
+            },
+            borderBottom: {
+                xs: '1px solid #e0e0e0',
+                md: 'none'
+            }
+        }}
+        display={'flex'}
+        flexDirection={'column'}
+        alignItems={'center'}
+        justifyContent={'center'}
+
+    >
+        <Skeleton variant="circular" width={300} height={300} />
+        <Skeleton variant="text" width={150} height={40} />
+        <Skeleton variant="rounded" width={300} height={30} />
+
+    </Box>)
+
     return (
         <Box
             id='items'
@@ -47,83 +93,40 @@ function Items() {
                     speed={700} // Set the transition speed in milliseconds
                     effect='fade' // Choose the transition effect (e.g., slide, fade)
                 >
-                    <SwiperSlide className='custom_slide' >
-                        <Link href='/items' style={{ color: 'black', textDecoration: 'none' }} >
-                            <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                <Image
-                                    src="/images/image6.jpg"
-                                    loading="lazy"
-                                    alt="items"
-                                    width={300}
-                                    height={300}
-                                    style={{ borderRadius: '50%' }}
-                                >
-                                </Image>
-                                <Typography
-                                    variant="h5"
+                    {
+                        topRatedItems.map((item) => (
+                            <SwiperSlide className='custom_slide' key={item._id} >
+                                <Link href={`/items?item=${item._id}`} style={{ color: 'black', textDecoration: 'none' }} >
+                                    <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                                        <img
+                                            src={item.images[0]}
+                                            loading="lazy"
+                                            alt={item.iteName}
+                                            width={300}
+                                            height={300}
+                                            style={{ borderRadius: '50%' }}
+                                        />
 
-                                >
-                                    lorem ipsum
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    owner
-                                </Typography>
-                                <Rating name="read-only" value={4.4} precision={0.5} readOnly />
-                            </Stack>
-                        </Link>
-                    </SwiperSlide>
-                    <SwiperSlide className='custom_slide' >
-                        <Link href='/items' style={{ color: 'black', textDecoration: 'none' }} >
-                            <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                <Image
-                                    src="/images/image6.jpg"
-                                    loading="lazy"
-                                    alt="items"
-                                    width={300}
-                                    height={300}
-                                    style={{ borderRadius: '50%' }}
-                                >
-                                </Image>
-                                <Typography
-                                    variant="h5"
+                                        <Typography
+                                            variant="h5"
 
-                                >
-                                    lorem ipsum
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    owner
-                                </Typography>
-                                <Rating name="read-only" value={4.4} precision={0.5} readOnly />
-                            </Stack>
-                        </Link>
-                    </SwiperSlide>
-                    <SwiperSlide className='custom_slide' >
-                        <Link href='/items' style={{ color: 'black', textDecoration: 'none' }} >
-                            <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                <Image
-                                    src="/images/image6.jpg"
-                                    loading="lazy"
-                                    alt="items"
-                                    width={300}
-                                    height={300}
-                                    style={{ borderRadius: '50%' }}
-                                >
-                                </Image>
-                                <Typography
-                                    variant="h5"
-
-                                >
-                                    lorem ipsum
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    owner
-                                </Typography>
-                                <Rating name="read-only" value={4.4} precision={0.5} readOnly />
-                            </Stack>
-                        </Link>
-                    </SwiperSlide>
-
-                    {/* Add more slides as needed */}
+                                        >
+                                            {item.itemName}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {item.price} MAD
+                                        </Typography>
+                                        <Stack alignItems={'center'} justifyContent={'center'} flexDirection={'row'} sx={{ mt: 2 }}>
+                                            <Rating name="read-only" value={item.avgRating} precision={0.5} readOnly />
+                                            <Typography variant="body2" color="text.secondary">
+                                                ({item.numberOfReviewers > 1 ? item.numberOfReviewers + 'reviews' : item.numberOfReviewers + 'review'} )
+                                            </Typography>
+                                        </Stack>
+                                    </Stack>
+                                </Link>
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
             </NoSsr>
             <Button variant='contained' sx={{ width: { xs: '90%', sm: '40%' }, mt: 2 }}>

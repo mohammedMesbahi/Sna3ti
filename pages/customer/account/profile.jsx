@@ -24,7 +24,7 @@ function calculateAverageRating(ratings) {
 }
 function profile() {
   const user = useSelector((state) => state.user);
-  const [following, setFollowing] = useState(user?.following);
+  const [following, setFollowing] = useState(user?.following || []);
   const [handicrafts, setHandicrafts] = useState([]);
 
   useEffect(() => {

@@ -5,13 +5,14 @@ import Alert from "@mui/material/Alert";
 
 const VerificationForm = ({ email, message }) => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
+    <Grid container>
+      <Grid item xs={12} p={1}>
           <Alert
             severity={'success'}
+            sx={{padding:2}}
           >
             {message}
-            <email>{email}</email>
+            "<b>{email}</b>"
           </Alert>
       </Grid>
     </Grid>
