@@ -41,14 +41,14 @@ const userReducer = (state = initialState, action) => {
         return { ...state, ratedItems: updatedRatedItems };
       }
       return { ...state, ratedItems: [...state.ratedItems, action.payload] };
-      
-      // let updatedRatedItems = state.ratedItems.map(ratedItem => {
-      //   if (ratedItem.itemId === action.payload.itemId) {
-      //     return { itemId: ratedItem.itemId, rate: action.payload.rate, };
-      //   }
-      //   return ratedItem;
-      // });
-      // return { ...state, ratedItems: updatedRatedItems };
+
+    case 'ADD_ITEM_TO_SAVEDITEMS':
+      return { ...state, savedItems: [...state.savedItems, action.payload] };
+    case 'REMOVE_ITEM_FROM_SAVEDITEMS':
+      return {
+        ...state,
+        savedItems: state.savedItems.filter((item) => item !== action.payload),
+      };
     default:
       return { ...state };
   }

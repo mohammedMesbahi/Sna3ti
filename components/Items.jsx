@@ -147,7 +147,7 @@ function Items({ items }) {
                   {item.owner.fullName}
                 </Typography>
                 <NoSsr>
-                  <CustomBookMarkedIcon />
+                  <CustomBookMarkedIcon item={item} />
                 </NoSsr>
               </Stack>
 
@@ -349,18 +349,52 @@ function Items({ items }) {
 }
 
 export default Items;
-import { useDespatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import HoverRatingItem from "./HoverRatingItem";
-function CustomBookMarkedIcon() {
+import {
+  addItemToSavedItems,
+  removeItemFromSavedItems,
+} from "@/reduxFolder/actions/userActions";
+import axios from "axios";
+function CustomBookMarkedIcon({ item }) {
   const user = useSelector((state) => state.user);
-  const [isBookmared, setIsBookmared] = useState(false);
-  // const dispatch = useDespatch();
+  const getInitialValue = () => {
+    if (user && user.savedItems?.find((savedItem) => savedItem == item._id)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const [isSaved, setIsSaved] = useState(getInitialValue());
+  const dispatch = useDispatch();
+
+  const saveItemhandler = async () => {
+    try {
+      if (isSaved) {
+        setIsSaved(false);
+        let serverReponse = await axios.post(
+          `/api/customers/unsave-item/${item._id}`,
+          { itemId: item._id }
+        );
+        dispatch(removeItemFromSavedItems(item._id));
+      } else {
+        setIsSaved(true);
+        let serverReponse = await axios.post(
+          `/api/customers/save-item/${item._id}`,
+          { itemId: item._id }
+        );
+        dispatch(addItemToSavedItems(item._id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (user && user.role == "customer") {
     return (
-      <IconButton aria-label="bookmark" onClick={() => {}}>
-        <BookmarkIcon /> {/* <BookmarkBorderIcon /> */}
+      <IconButton aria-label="bookmark" onClick={saveItemhandler}>
+        {isSaved ? <BookmarkIcon /> : <BookmarkBorderIcon />}
       </IconButton>
     );
   } else {
