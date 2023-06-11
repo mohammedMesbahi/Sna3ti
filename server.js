@@ -4,12 +4,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const port = process.env.PORT || 3001;
+const hostname = process.env.HOST || 'localhost';
+const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-  /* server.use(cookieParser())
+  server.use(cookieParser())
   server.use((req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
@@ -19,7 +21,7 @@ app.prepare().then(() => {
       });
     }
     next();
-  }) */
+  })
   server.use('/api', createProxyMiddleware({
     target: 'http://localhost:3000', // target base URL
     changeOrigin: true, // needed for virtual hosted sites    
