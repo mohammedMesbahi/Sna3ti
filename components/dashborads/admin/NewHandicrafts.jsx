@@ -9,7 +9,9 @@ import {
   Divider,
   Button,
   Collapse,
+  Alert,
 } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
 import CustomError from "./CustomError";
@@ -18,11 +20,67 @@ import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import {HandicraftSearchBar} from "@/components/dashborads/admin/searchBars/handicrafts";
+import { HandicraftSearchBar } from "@/components/dashborads/admin/searchBars/handicrafts";
+import Slide from "@mui/material/Slide";
 function NewHandicrafts() {
   const [loading, setLoading] = useState(true);
   const [unCheckedHandicrafts, setUnCheckedHandicrafts] = useState({});
   const [error, setError] = useState(null);
+  const [acceptRejectMessage, setAcceptRejectMessage] =
+    useState("success message");
+  const [open, setOpen] = useState(false);
+  const [vertical, setVertical] = useState("top");
+  const [horizontal, setHorizontal] = useState("right");
+  const [severity, setSeverity] = useState("success");
+
+  function SlideTransition(props) {
+    return <Slide {...props} direction="left" />;
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const accepteHandicraft = (handicraft) => {
+    axios
+      .put(`/api/admins/accept-handicrafts/${handicraft._id}`)
+      .then((response) => {
+        setAcceptRejectMessage(response.data.message);
+        setSeverity("success");
+        setOpen(true);
+        setUnCheckedHandicrafts(
+          unCheckedHandicrafts.filter((item) => item._id !== handicraft._id)
+        );
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setAcceptRejectMessage(error.response.data.message);
+        setSeverity("error");
+        setOpen(true);
+      });
+  };
+  const rejectHandicraft = (handicraft) => {
+    axios
+      .delete(`/api/admins/handicrafts/${handicraft._id}`)
+      .then((response) => {
+        setAcceptRejectMessage(response.data.message);
+        setSeverity("info");
+        setOpen(true);
+        setUnCheckedHandicrafts(
+          unCheckedHandicrafts.filter((item) => item._id !== handicraft._id)
+        );
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setAcceptRejectMessage(error.response.data.message);
+        setSeverity("error");
+        setOpen(true);
+        setError(error.response.data);
+      });
+  };
 
   useEffect(() => {
     axios
@@ -51,7 +109,7 @@ function NewHandicrafts() {
               <Skeleton
                 key={index}
                 variant="rectangular"
-                height={400}
+                height={350}
                 width={"100%"}
                 sx={{ my: 0.5 }}
               />
@@ -67,6 +125,17 @@ function NewHandicrafts() {
 
   return (
     <>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {acceptRejectMessage}
+        </Alert>
+      </Snackbar>
       <HandicraftSearchBar />
       <Grid container spacing={1} mt={2}>
         {unCheckedHandicrafts.map((handicraft) => (
@@ -150,10 +219,22 @@ function NewHandicrafts() {
               }}
               gap={1}
             >
-              <Button variant="contained" color="success">
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => {
+                  accepteHandicraft(handicraft);
+                }}
+              >
                 Accept
               </Button>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                  rejectHandicraft(handicraft);
+                }}
+              >
                 Reject
               </Button>
             </Stack>

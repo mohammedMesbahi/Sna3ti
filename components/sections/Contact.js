@@ -34,9 +34,7 @@ function Contact() {
 
                     <Stack spacing={2} >
                         <Typography variant='h5' component='h5' sx={{ fontWeight: 'bold' }} textAlign={'center'} >
-                            Handcrafted Arts Of Morocco
-                            Fes, Morocco 30020
-                            MOROCCO
+                        Espace Bureau Allal Ben Abdellah 54 Av. Allal Ben Abdellah, 3ème étage Bur. 24, Fès 30000 .
                         </Typography>
 
                         <Stack direction='row' spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} >

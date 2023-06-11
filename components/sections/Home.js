@@ -34,11 +34,11 @@ function Home() {
             <Box color={'white'} paddingLeft={4}>
 
                 <Typography variant='h3' component='h1' color={'inherit'}>
-                    Moroccan handmade expert store
+                    Sna3ti, where tradition comes alive!
                 </Typography>
                 <Typography variant='h5' component={'p'} marginBottom={4} sx={{ maxWidth: { md: '55%' } }}>
-                    The Moroccan handmade expert store, pre order and buy in wholesale
-                    Moroccan handicrafts from the first artisans market in Morocco.
+                    Immerse yourself in the realm of artisan craft, where every creation tells a captivating tale of dedication and expertise.
+                    Join us in embracing the delight of genuine craftsmanship.
                 </Typography>
 
                 <Button size='large' variant="contained" sx={{
