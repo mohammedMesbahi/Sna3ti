@@ -21,7 +21,8 @@ import {
 // import Chart from './Chart';
 import AccountMenuList from "@/components/dashborads/admin/AccountMenuList";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -69,7 +70,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function AdminDashboardLayout({ children }) {
-  const [open, setOpen] = React.useState(true);
+  const matches = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+  const [open, setOpen] = React.useState(matches);
   const admin = useSelector((state) => state.admin) || {};
   const dispatch = useDispatch();
 
@@ -88,13 +90,13 @@ export default function AdminDashboardLayout({ children }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="absolute" open={open}>
+      <AppBar position="absolute" open={matches}>
         <Toolbar
           sx={{
             pr: "24px", // keep right padding when drawer closed
           }}
         >
-          <IconButton
+          {/* <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -105,7 +107,7 @@ export default function AdminDashboardLayout({ children }) {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography
             component="h1"
             variant="h6"
@@ -144,18 +146,24 @@ export default function AdminDashboardLayout({ children }) {
           />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={matches}>
         <Toolbar
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "flex-end",
-            px: [1],
+            justifyContent: "center",
+             
           }}
         >
-          <IconButton onClick={toggleDrawer}>
+          {/* <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
-          </IconButton>
+          </IconButton> */}
+          <img src="/logs/6.png" alt="logo" style={{
+            maxWidth:65,
+            maxHeight:65,
+            minWidth:65,
+            minHeight:65,
+          }} />
         </Toolbar>
         <Divider />
         <List component="nav">

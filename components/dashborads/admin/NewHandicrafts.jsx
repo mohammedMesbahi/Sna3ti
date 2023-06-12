@@ -52,7 +52,7 @@ function NewHandicrafts() {
         setSeverity("success");
         setOpen(true);
         setUnCheckedHandicrafts(
-          unCheckedHandicrafts.filter((item) => item._id !== handicraft._id)
+          unCheckedHandicrafts.filter((unCheckedHandicraft) => unCheckedHandicraft._id !== handicraft._id)
         );
       })
       .catch((error) => {
@@ -70,7 +70,7 @@ function NewHandicrafts() {
         setSeverity("info");
         setOpen(true);
         setUnCheckedHandicrafts(
-          unCheckedHandicrafts.filter((item) => item._id !== handicraft._id)
+          unCheckedHandicrafts.filter((unCheckedHandicraft) => unCheckedHandicraft._id !== handicraft._id)
         );
       })
       .catch((error) => {
