@@ -125,7 +125,7 @@ function Items() {
           {acceptRejectMessage}
         </Alert>
       </Snackbar>
-      <Typography variant={"h3"}>All Provide Items</Typography>
+      <Typography variant={"h3"}>Approved Items</Typography>
       <Divider sx={{ my: 1 }} />
       <Grid container spacing={1}>
         {checkedItems.map((item) => (
@@ -230,7 +230,7 @@ function Item({ item, removeItem, aproveItem }) {
             variant={"contained"}
             color="secondary"
           >
-            Reject
+            Remove
           </Button>
         </Stack>
       </Box>

@@ -100,7 +100,7 @@ function MyItem({ item }) {
       </Stack>
       <Box
         sx={{
-          height: 200,
+          height: 300,
           overflow: "hidden",
         }}
       >
@@ -109,6 +109,7 @@ function MyItem({ item }) {
           
           style={{ maxWidth: "100%",
           minWidth: "100%",
+          maxWidth: '100%',
           minHeight: '100%',
           maxHeight: '100%',
           borderRadius: 10,
