@@ -20,6 +20,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Container, NoSsr } from "@mui/material";
+import { calculateAverageRating } from "@/lib";
 function ProfileTab() {
   const user = useSelector((state) => state.user) || {};
   return (
@@ -28,7 +29,7 @@ function ProfileTab() {
         maxWidth: { xs: "95%", md: "90%" },
         height: {
           xs: "auto",
-          md:'80vh'
+          md: "80vh",
         },
         display: "flex",
         flexDirection: {
@@ -96,13 +97,20 @@ function ProfileTab() {
               >
                 {user.craft}
               </Typography>
-              <Rating name="read-only" value={0} precision={0.5} />
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Rating
+                  name="read-only"
+                  value={calculateAverageRating(user.rates)}
+                  precision={0.5}
+                />
+                <Typography variant="subtitle1" display={"inline"}>
+                  ({user.rates.length > 1 ? `${user.rates.length} reviews` : `${user.rates.length} review` })
+                </Typography>
+              </Stack>
             </Stack>
           </Stack>
 
-          <Accordion
-            sx={{ border: "1px solid #e0e0e0" }}
-          >
+          <Accordion sx={{ border: "1px solid #e0e0e0" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -209,7 +217,7 @@ function ItemsContainer() {
       >
         {Array(10)
           .fill()
-          .map((number,index) => (
+          .map((number, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Paper
                 elevation={3}
@@ -248,7 +256,6 @@ function ItemsContainer() {
           <MyItem item={item} />
         </Grid>
       ))}
-
     </Grid>
   );
 }

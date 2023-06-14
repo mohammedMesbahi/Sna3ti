@@ -4,8 +4,9 @@ import axios from "axios";
 import { Snackbar } from "@mui/material";
 import DialogDelete from "@/components/dashborads/handicraft/DashboardComponents/DialogDelete";
 import ItemsList from "@/components/dashborads/handicraft/DashboardComponents/ItemsList";
+import ModifieItemModal from "@/components/dashborads/handicraft/ModifieItemModal";
 
-export default function ItemsPageComponent({title, itemsToRender}) {
+export default function ItemsPageComponent({ title, itemsToRender }) {
   const [items, setItems] = useState(undefined);
   const [error, setError] = useState(undefined);
 
@@ -15,9 +16,20 @@ export default function ItemsPageComponent({title, itemsToRender}) {
   const vertical = "top";
   const horizontal = "right";
 
-  const [severity, setSeverity] = useState("");
+  const [severity, setSeverity] = useState("success");
   const [dialogDeleteOpen, setDialogDeleteOpen] = useState(false);
   const [selectedItemDelete, setSelectedItemDelete] = useState(undefined);
+  const [selectedItemModifie, setSelectedItemModifie] = useState({});
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(true);
+
+  const handleEditClick = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
@@ -93,6 +105,13 @@ export default function ItemsPageComponent({title, itemsToRender}) {
         setDialogDeleteOpen={setDialogDeleteOpen}
         setSelectedItemDelete={setSelectedItemDelete}
         itemsToRender={itemsToRender}
+        setSelectedItemModifie={setSelectedItemModifie}
+        setIsEditModalOpen={setIsEditModalOpen}
+      />
+      <ModifieItemModal
+        open={isEditModalOpen}
+        item={selectedItemModifie}
+        handleClose={handleCloseModal}
       />
     </Container>
   );

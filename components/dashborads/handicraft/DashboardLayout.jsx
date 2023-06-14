@@ -54,10 +54,7 @@ function DashboardLayout({ children }) {
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);
-            }}
-            sx={{
-              overflowX: "auto",
-            }}
+            }}            
           >
             <BottomNavigationAction
               label="profile"

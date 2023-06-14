@@ -20,6 +20,8 @@ function MyItemCard({
   setResponseMessage,
   setDialogDeleteOpen,
   setSelectedItemDelete,
+  setSelectedItemModifie,
+  setIsEditModalOpen,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -54,7 +56,7 @@ function MyItemCard({
     >
       <Stack flexDirection={"row"} gap={1} alignItems={"center"}>
         <Typography fontSize={20} fontWeight="lg" flexGrow={1}>
-          2,900 <strong>MAD</strong>
+          {item.price} <strong>MAD</strong>
         </Typography>
         <VerifiedIcon
           style={{ color: item.checked ? "#00e676" : "gray" }}
@@ -119,7 +121,13 @@ function MyItemCard({
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            setSelectedItemModifie(item);
+            setIsEditModalOpen(true);
+          }}
+          disableRipple
+        >
           <EditIcon />
           Edit
         </MenuItem>
