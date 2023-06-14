@@ -59,6 +59,7 @@ export default function SignInModal({ open, setOpen }) {
         let res = await response.json()
         dispatch(loginUser(res.data))
       }
+      setOpen(false)
     } else {
       setOpenAlert(true);
       setAlerttMessage(res.message);

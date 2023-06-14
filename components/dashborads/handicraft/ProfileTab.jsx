@@ -105,7 +105,11 @@ function ProfileTab() {
                   readOnly
                 />
                 <Typography variant="subtitle1" display={"inline"}>
-                  ({user.rates?.length > 1 ? `${user.rates?.length} reviews` : `${user.rates?.length} review` })
+                  (
+                  {user.rates?.length > 1
+                    ? `${user.rates?.length} reviews`
+                    : `${user.rates?.length} review`}
+                  )
                 </Typography>
               </Stack>
             </Stack>
@@ -252,11 +256,16 @@ function ItemsContainer() {
       component={"section"}
       spacing={1}
     >
-      {data.items.map((item) => (
-        <Grid item xs={12} sm={6} md={4} key={item._id}>
-          <MyItem item={item} />
-        </Grid>
-      ))}
+      {data.items.map((item) => {
+        if (item.checked === true && item.visibility === true ) {
+          return (
+            <Grid item xs={12} sm={6} md={4} key={item._id}>
+              <MyItem item={item} />
+            </Grid>
+          );
+        }
+        return ;
+      })}
     </Grid>
   );
 }
