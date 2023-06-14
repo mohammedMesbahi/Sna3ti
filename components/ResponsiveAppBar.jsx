@@ -311,7 +311,7 @@ const CustomMenu = ({
 
           <Divider />
 
-          <MenuItem component={Link} href="/handicraft/dashboard/publish/">
+          <MenuItem component={Link} href="/handicraft/dashboard/publish-item/">
             <ListItemIcon>
               <AddCircleOutlineIcon fontSize="small" />
             </ListItemIcon>

@@ -1,9 +1,10 @@
 import DashboardLayout from "@/components/dashborads/handicraft/DashboardLayout";
 import ItemsPageComponent from "@/components/dashborads/handicraft/ItemsPageComponent";
-export default function IndexPage() {
+
+export default function Items() {
   return (
     <DashboardLayout>
-      <ItemsPageComponent title="my items" itemsToRender={true} />
+      <ItemsPageComponent title="Archived Items" itemsToRender={false} />
     </DashboardLayout>
   );
 }

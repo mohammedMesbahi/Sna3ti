@@ -46,6 +46,7 @@ function ProfileTab() {
       component={"section"}
       p={2}
       height={"80vh"}
+      overflow={"auto"}
     >
       {/* profile Card */}
       <Paper
@@ -209,7 +210,7 @@ function ItemsContainer() {
         {Array(10)
           .fill()
           .map((number,index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               <Paper
                 elevation={3}
                 sx={{
@@ -243,7 +244,7 @@ function ItemsContainer() {
       spacing={1}
     >
       {data.items.map((item) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
+        <Grid item xs={12} sm={6} md={4} key={item._id}>
           <MyItem item={item} />
         </Grid>
       ))}

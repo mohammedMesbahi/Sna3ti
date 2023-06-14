@@ -53,6 +53,11 @@ const CreatItemTab = () => {
       setOpenAlert(true);
       setAlertMessage(res.message);
       setAlertSeverity("success");
+      setItemName("");
+      setDescription("");
+      setPrice(0);
+      setImages(undefined);
+      
     } else {
       res = await res.json();
       setSubmitting(false);
@@ -104,7 +109,7 @@ const CreatItemTab = () => {
         <IosShareIcon fontSize="large" />
       </Box>
 
-      <Collapse in={openAlert} sx={{ marginTop: 1 }}>
+      <Collapse in={openAlert} sx={{ marginTop: 1 ,alignSelf:'center',m:1}}>
         <Alert
           severity={alertSeverity}
           action={
@@ -126,7 +131,7 @@ const CreatItemTab = () => {
       </Collapse>
       <form
         onSubmit={handleSubmit}
-        onChange={() => setOpenAlert(false)}
+        onFocus={() => setOpenAlert(false)}
         style={{
           display: "flex",
           flexDirection: "column",

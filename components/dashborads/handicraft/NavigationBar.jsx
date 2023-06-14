@@ -7,7 +7,7 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import ArchiveIcon from '@mui/icons-material/Archive';
+import ArchiveIcon from "@mui/icons-material/Archive";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Navcss from "@/styles/NavBar.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -23,7 +23,7 @@ function NavigationBar() {
       sx={{
         flexDirection: { xs: "row", md: "column" },
         width: { xs: "100%", md: "20%" },
-        display: { xs: "none",sm:'none', md: "flex" },
+        display: { xs: "none", sm: "none", md: "flex" },
       }}
     >
       {/* logo Box */}
@@ -31,30 +31,18 @@ function NavigationBar() {
       <Box
         flexDirection="row"
         alignItems="center"
-        
         borderBottom={"1px solid lightGray"}
-        component={"header"}
-        sx={{ display: { md: "flex", xs: "none" },
-        justifyContent:{
-          md:"center",
-          lg:"flex-start"
-        },
-       }}
+        sx={{ display: { md: "flex", xs: "none" }, justifyContent: "center" }}
+        component={Link}
+        href="/"
       >
         <Image
           src="/logs/6.png"
-          width={64}
-          height={64}
+          width={69}
+          height={69}
           alt="Picture of the author"
           style={{ display: "inline" }}
         ></Image>
-        <Typography
-          variant="body2"
-          fontWeight={"bold"}
-          sx={{ fontSize: "2rem",display: { md:'none',lg:'flex'} }}
-        >
-          MyCraft
-        </Typography>
       </Box>
       {/* tab list */}
       <Box
@@ -65,22 +53,20 @@ function NavigationBar() {
           flexDirection: { xs: "row", md: "column" },
         }}
       >
-        <Link
-          href="/handicraft/dashboard/"
-          className={Navcss.navbar__link}          
-        >
+        <Link href="/handicraft/profile" className={Navcss.navbar__link}>
           <Stack
             variant="body2"
             flexDirection={"row"}
             spacing={1}
             alignItems={"center"}
           >
-            <AccountCircleIcon fontSize="large" sx={{marginRight:1}}  /> {matchMD ? "profile" : ""}
+            <AccountCircleIcon fontSize="large" sx={{ marginRight: 1 }} />{" "}
+            {matchMD ? "profile" : ""}
           </Stack>
         </Link>
         <Link
-          href="/handicrafts"
-          className={Navcss.navbar__link}          
+          href="/handicraft/dashboard/items"
+          className={Navcss.navbar__link}
         >
           <Stack
             variant="body2"
@@ -88,12 +74,13 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <PeopleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "handicrafts" : ""}
+            <ShoppingCartIcon fontSize="large" sx={{ marginRight: 1 }} />{" "}
+            {matchMD ? "items" : ""}
           </Stack>
         </Link>
         <Link
-          href="/items"
-          className={Navcss.navbar__link}          
+          href="/handicraft/dashboard/archived"
+          className={Navcss.navbar__link}
         >
           <Stack
             variant="body2"
@@ -101,12 +88,13 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <ShoppingCartIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "items" : ""}
+            <ArchiveIcon fontSize="large" sx={{ marginRight: 1 }} />{" "}
+            {matchMD ? "archived" : ""}
           </Stack>
         </Link>
         <Link
           href="/handicraft/dashboard/publish-item"
-          className={Navcss.navbar__link}          
+          className={Navcss.navbar__link}
         >
           <Stack
             variant="body2"
@@ -114,25 +102,13 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <AddCircleOutlineIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "publish item" : ""}
-          </Stack>
-        </Link>
-        <Link
-          href="/handicraft/dashboard/archived-items"
-          className={Navcss.navbar__link}          
-        >
-          <Stack
-            variant="body2"
-            flexDirection={"row"}
-            spacing={1}
-            alignItems={"center"}
-          >
-            <ArchiveIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "archived items" : ""}
+            <AddCircleOutlineIcon fontSize="large" sx={{ marginRight: 1 }} />{" "}
+            {matchMD ? "publish" : ""}
           </Stack>
         </Link>
         <Link
           href="/handicraft/dashboard/settings"
-          className={Navcss.navbar__link}          
+          className={Navcss.navbar__link}
         >
           <Stack
             variant="body2"
@@ -140,7 +116,8 @@ function NavigationBar() {
             spacing={1}
             alignItems={"center"}
           >
-            <SettingsIcon fontSize="large" sx={{marginRight:1}} /> {matchMD ? "account" : ""}
+            <SettingsIcon fontSize="large" sx={{ marginRight: 1 }} />{" "}
+            {matchMD ? "account" : ""}
           </Stack>
         </Link>
       </Box>

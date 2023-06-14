@@ -10,6 +10,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Link from "next/link";
+import { ArchiveOutlined } from "@mui/icons-material";
 // import NoSsr from "@mui/base/NoSsr";
 
 // import Link from "next/link";
@@ -62,19 +63,19 @@ function DashboardLayout({ children }) {
               label="profile"
               icon={<AccountCircleIcon />}
               component={Link}
-              href="/handicraft/dashboard/"
-            />
-            <BottomNavigationAction
-              label="handicrafts"
-              icon={<PeopleOutlineIcon />}
-              component={Link}
-              href="/handicrafts"
+              href="/handicraft/profile"
             />
             <BottomNavigationAction
               label="items"
               icon={<ShoppingCartIcon />}
               component={Link}
-              href="/items"
+              href="/handicraft/dashboard/items"
+            />
+            <BottomNavigationAction
+              label="archived"
+              icon={<ArchiveOutlined />}
+              component={Link}
+              href="/handicraft/dashboard/archived"
             />
             <BottomNavigationAction
               label="publish"
