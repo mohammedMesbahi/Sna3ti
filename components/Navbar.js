@@ -115,7 +115,11 @@ const Navbar = () => {
                 </Link>
             </ListItem> */
     );
-
+        React.useEffect(() => {
+            if (router.query?.openLogin) {
+                setOpenSignIn(true);
+            }
+        },[router.query])
     return (
         <>
             <AppBar sx={{
