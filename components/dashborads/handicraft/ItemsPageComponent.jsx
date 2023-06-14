@@ -19,15 +19,15 @@ export default function ItemsPageComponent({ title, itemsToRender }) {
   const [severity, setSeverity] = useState("success");
   const [dialogDeleteOpen, setDialogDeleteOpen] = useState(false);
   const [selectedItemDelete, setSelectedItemDelete] = useState(undefined);
-  const [selectedItemModifie, setSelectedItemModifie] = useState({});
-
-  const [isEditModalOpen, setIsEditModalOpen] = useState(true);
+  const [itemToBeModified, setItemToBeModified] = useState({});
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleEditClick = () => {
     setIsEditModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    setItemToBeModified({});
     setIsEditModalOpen(false);
   };
 
@@ -105,12 +105,12 @@ export default function ItemsPageComponent({ title, itemsToRender }) {
         setDialogDeleteOpen={setDialogDeleteOpen}
         setSelectedItemDelete={setSelectedItemDelete}
         itemsToRender={itemsToRender}
-        setSelectedItemModifie={setSelectedItemModifie}
+        setItemToBeModified={setItemToBeModified}
         setIsEditModalOpen={setIsEditModalOpen}
       />
       <ModifieItemModal
         open={isEditModalOpen}
-        item={selectedItemModifie}
+        item={itemToBeModified}
         handleClose={handleCloseModal}
       />
     </Container>

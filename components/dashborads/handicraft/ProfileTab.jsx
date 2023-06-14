@@ -102,6 +102,7 @@ function ProfileTab() {
                   name="read-only"
                   value={calculateAverageRating(user.rates)}
                   precision={0.5}
+                  readOnly
                 />
                 <Typography variant="subtitle1" display={"inline"}>
                   ({user.rates.length > 1 ? `${user.rates.length} reviews` : `${user.rates.length} review` })

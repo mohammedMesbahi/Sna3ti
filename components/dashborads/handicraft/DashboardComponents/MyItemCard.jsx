@@ -20,7 +20,7 @@ function MyItemCard({
   setResponseMessage,
   setDialogDeleteOpen,
   setSelectedItemDelete,
-  setSelectedItemModifie,
+  setItemToBeModified,
   setIsEditModalOpen,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -123,7 +123,7 @@ function MyItemCard({
       >
         <MenuItem
           onClick={() => {
-            setSelectedItemModifie(item);
+            setItemToBeModified(item);
             setIsEditModalOpen(true);
           }}
           disableRipple

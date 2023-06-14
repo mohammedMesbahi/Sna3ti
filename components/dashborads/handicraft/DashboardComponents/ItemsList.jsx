@@ -12,7 +12,7 @@ export default function ItemsList({
   setDialogDeleteOpen,
   itemsToRender,
   setSelectedItemDelete,
-  setSelectedItemModifie,
+  setItemToBeModified,
   setIsEditModalOpen
 }) {
   if (error) return <Error error={error} />;
@@ -65,7 +65,7 @@ export default function ItemsList({
                 setItems={setItems}
                 setDialogDeleteOpen={setDialogDeleteOpen}
                 setSelectedItemDelete={setSelectedItemDelete}
-                setSelectedItemModifie={setSelectedItemModifie}
+                setItemToBeModified={setItemToBeModified}
                 setIsEditModalOpen={setIsEditModalOpen}
               />
             </Grid>
