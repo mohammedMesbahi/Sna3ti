@@ -112,6 +112,7 @@ export default function ItemsPageComponent({ title, itemsToRender }) {
         open={isEditModalOpen}
         item={itemToBeModified}
         handleClose={handleCloseModal}
+        setItems={setItems}
       />
     </Container>
   );

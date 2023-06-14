@@ -13,9 +13,25 @@ import Navcss from "@/styles/NavBar.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Divider from "@mui/material/Divider";
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { logoutUser } from "@/reduxFolder/actions/userActions";
+
 // import { Box } from "@mui/joy";
 function NavigationBar() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const matchMD = useMediaQuery("(min-width:960px)");
+  const handleLogout = async () => {
+    const response = await fetch("/api/auth/logout", { method: "POST" });
+    const data = await response.json();
+    if (response.ok) {
+      dispatch(logoutUser());
+      router.push("/");
+    } else {
+      console.log("logout failed", data);
+    }
+  };
   return (
     <Stack
       component={"aside"}
@@ -131,6 +147,7 @@ function NavigationBar() {
             md: "1px solid lightGray",
           },
         }}
+        onClick={() => {handleLogout()}}
       >
         {matchMD ? "log out" : ""}
       </Button>

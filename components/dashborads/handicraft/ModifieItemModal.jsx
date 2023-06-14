@@ -18,8 +18,7 @@ import Collapse from "@mui/material/Collapse";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 import axios from "axios";
-function ModifieItemModal({ open, handleClose, item }) {
-  console.log("item", item);
+function ModifieItemModal({ open, handleClose, item,setItems }) {
   const [modifiedItemName, setModifiedItemName] = useState("");
   const [modifiedDescription, setModifiedDescription] = useState("");
   const [modifiedPrice, setModifiedPrice] = useState(0);
@@ -29,7 +28,7 @@ function ModifieItemModal({ open, handleClose, item }) {
   const [openAlert, setOpenAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("success");
-
+  const [imagesToUpload, setImagesToUpload] = useState([]);
   const handleSave = () => {
     // Perform save action with the modified item data and selected images
     // ...
@@ -54,10 +53,19 @@ function ModifieItemModal({ open, handleClose, item }) {
         setAlertSeverity("success");
         setOpenAlert(true);
         setSubmitting(false);
+        setItems((prevItems) => {
+          const index = prevItems.findIndex(
+            (item) => item._id === res.data.data._id
+          );
+          const newItems = [...prevItems];
+          newItems[index] = res.data.data;
+          return newItems;
+        }
+        );
       })
       .catch((err) => {
-        console.log(err);
-        setAlertMessage("Error updating item");
+        console.log(err.response.data);
+        setAlertMessage(err.response.data.message);
         setAlertSeverity("error");
         setOpenAlert(true);
         setSubmitting(false);
@@ -74,34 +82,43 @@ function ModifieItemModal({ open, handleClose, item }) {
       },
       item
     ) {
-      const fields = {};
+      const formData = new FormData();
+
       if (modifiedItemName !== item.itemName) {
-        fields.itemName = modifiedItemName;
+        formData.append("itemName", modifiedItemName);
+      }
+      if (modifiedPrice !== item.itemPrice) {
+        formData.append("price", modifiedPrice);
       }
       if (modifiedDescription !== item.description) {
-        fields.description = modifiedDescription;
-      }
-      if (modifiedPrice !== item.price) {
-        fields.price = modifiedPrice;
+        formData.append("description", modifiedDescription);
       }
       if (selectedImages.toString() !== item.images.toString()) {
-        fields.images = selectedImages;
+        for (let i = 0; i < imagesToUpload.length; i++) {
+          formData.append("images", imagesToUpload[i]);
+        }
       }
-      return fields;
+      return formData;
     }
   };
 
   const handleImageChange = (e) => {
     const files = e.target.files;
+    if (files.size > 4) {
+      setImages([]);
+      alert("You can only upload a maximum of 4 images");
+      return (e.target.value = ""); // Clear the selected file
+    }
+    setImagesToUpload(files);
     const imagesArray = Array.from(files).map((file) =>
       URL.createObjectURL(file)
     );
     setSelectedImages(imagesArray);
   };
   useEffect(() => {
-    setModifiedItemName(item.itemName || "" );
+    setModifiedItemName(item.itemName || "");
     setModifiedDescription(item.description || "");
-    setModifiedPrice(item.price || '');
+    setModifiedPrice(item.price || "");
     setSelectedImages(item.images || []);
   }, [item]);
   return (
@@ -207,7 +224,12 @@ function ModifieItemModal({ open, handleClose, item }) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <LoadingButton loading={submitting} onClick={handleSave} variant="contained" color="primary">
+        <LoadingButton
+          loading={submitting}
+          onClick={handleSave}
+          variant="contained"
+          color="primary"
+        >
           Save
         </LoadingButton>
       </DialogActions>
