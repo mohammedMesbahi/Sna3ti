@@ -55,7 +55,7 @@ function Handicrafts() {
         <Skeleton variant="rounded" width={300} height={30} />
 
     </Box>)
-    
+
     return (
         <Box
             id='handicrafts'
@@ -137,10 +137,8 @@ function Handicrafts() {
                     {/* Add more slides as needed */}
                 </Swiper>
             </NoSsr>
-            <Button variant='contained' sx={{ width: { xs: '90%', sm: '40%' }, mt: 2 }}>
-                <Link href='/handicrafts' style={{ color: 'black', textDecoration: 'none' }} >
-                    View All Handicrafts
-                </Link>
+            <Button variant='contained' component={Link} href='/handicrafts' sx={{ width: { xs: '90%', sm: '40%' }, mt: 2 }}>
+                View All Handicrafts
             </Button>
 
         </Box >

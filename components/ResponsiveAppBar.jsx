@@ -28,6 +28,9 @@ import Link from "next/link";
 import Image from "next/image";
 import NoSsr from "@mui/base/NoSsr";
 import SignInModal from "@/components/modals/SignInModal";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "@/reduxFolder/actions/userActions";
 
 const pages = ["Handicrafts", "Items"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -247,9 +250,7 @@ function ResponsiveAppBar() {
     </>
   );
 }
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "@/reduxFolder/actions/userActions";
+
 /* custome menu for users */
 const CustomMenu = ({
   user,

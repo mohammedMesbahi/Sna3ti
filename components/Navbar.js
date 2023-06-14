@@ -1,12 +1,58 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem, ListItemText, Box, Grid } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import Image from 'next/image';
+import { Drawer, List, ListItem, ListItemText, Grid } from '@mui/material';
 import SignInModal from './modals/SignInModal';
+
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import { useSelector } from "react-redux";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ViewComfyIcon from "@mui/icons-material/ViewComfy";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import Divider from "@mui/material/Divider";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { ListItemIcon } from "@mui/material";
+import Link from "next/link";
+import Image from "next/image";
+import NoSsr from "@mui/base/NoSsr";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "@/reduxFolder/actions/userActions";
+
 const Navbar = () => {
     const router = useRouter();
+    const { user } = useSelector((state) => state);
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
 
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
     const [open, setOpen] = React.useState(false);
     const [openSignIn, setOpenSignIn] = React.useState(false);
     const handleDrawerToggle = () => {
@@ -143,11 +189,22 @@ const Navbar = () => {
                     }} >
                         {drawerItems}
                     </Box>
-                    <Button
-                        variant="contained"
-                        sx={{ color: 'white', minWidth: '100px' }}
-                        onClick={() => setOpenSignIn(true)}
-                    >Sign In</Button>
+                    <NoSsr>
+                        {user && user.role ? (
+                            <CustomMenu
+                                user={user}
+                                handleOpenUserMenu={handleOpenUserMenu}
+                                anchorElUser={anchorElUser}
+                                handleCloseUserMenu={handleCloseUserMenu}
+                            />
+                        ) : (
+                            <Button
+                                variant="contained"
+                                sx={{ color: 'white', minWidth: '100px' }}
+                                onClick={() => setOpenSignIn(true)}
+                            >Sign In</Button>
+                        )}
+                    </NoSsr>
 
                 </Toolbar>
 
@@ -172,3 +229,146 @@ const Navbar = () => {
 };
 
 export default Navbar;
+/* custome menu for users */
+const CustomMenu = ({
+    user,
+    handleOpenUserMenu,
+    anchorElUser,
+    handleCloseUserMenu,
+}) => {
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const handleLogout = async () => {
+        const response = await fetch("/api/auth/logout", { method: "POST" });
+        const data = await response.json();
+        if (response.ok) {
+            dispatch(logoutUser());
+            router.push("/");
+        } else {
+            console.log("logout failed", data);
+        }
+    };
+    if (user.role == "handicraft") {
+        return (
+            <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <NoSsr>
+                            <Avatar alt={user.fullName} src={user.profileImage} />
+                        </NoSsr>
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                >
+                    <MenuItem component={Link} href="/handicraft/profile/">
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
+                        Profile
+                    </MenuItem>
+
+                    <MenuItem component={Link} href="/handicraft/dashboard/">
+                        <ListItemIcon>
+                            <ViewComfyIcon fontSize="small" />
+                        </ListItemIcon>
+                        dashboard
+                    </MenuItem>
+
+                    <Divider />
+
+                    <MenuItem component={Link} href="/handicraft/dashboard/publish-item/">
+                        <ListItemIcon>
+                            <AddCircleOutlineIcon fontSize="small" />
+                        </ListItemIcon>
+                        publish an item
+                    </MenuItem>
+
+                    <MenuItem component={Link} href="/handicraft/account/settings/">
+                        <ListItemIcon>
+                            <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Settings
+                    </MenuItem>
+
+                    <MenuItem onClick={handleLogout}>
+                        <ListItemIcon>
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Logout
+                    </MenuItem>
+                </Menu>
+            </Box>
+        );
+    }
+    return (
+        <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <NoSsr>
+                        <Avatar alt={user.fullName} src={user.profileImage} />
+                    </NoSsr>
+                </IconButton>
+            </Tooltip>
+            <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+            >
+                <MenuItem component={Link} href="/customer/account/profile/">
+                    <ListItemIcon>
+                        <AccountCircleIcon />
+                    </ListItemIcon>
+                    Profile
+                </MenuItem>
+
+                <Divider />
+
+                <MenuItem component={Link} href="/customer/account/settings/">
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                </MenuItem>
+
+                <MenuItem component={Link} href="/customer/account/bookmarked/">
+                    <ListItemIcon>
+                        <BookmarkIcon fontSize="small" />
+                    </ListItemIcon>
+                    Bookmared
+                </MenuItem>
+
+                <MenuItem onClick={handleLogout}>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </Menu>
+        </Box>
+    );
+};

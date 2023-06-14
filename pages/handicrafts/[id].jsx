@@ -25,6 +25,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Modal from "@mui/material/Modal";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
+import HoverRatingItem from "@/components/HoverRatingItem";
+
 // Import Swiper styles
 import "swiper/css";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
@@ -394,7 +396,9 @@ function HandicraftProfile({ handicraft: user }) {
               <Typography fontSize={"120%"} sx={{ flexGrow: 1 }}>
                 {selectedItem.price} <strong>MAD</strong>
               </Typography>
-              <Rating value={0} precision={0.5} />
+              <NoSsr>
+                <HoverRatingItem item={selectedItem} />
+              </NoSsr>
             </Stack>
           </Stack>
 

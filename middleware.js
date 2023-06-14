@@ -19,8 +19,22 @@ export default async function middleware(req) {
     })
 
   }
+  if (req.nextUrl.pathname.startsWith('/customer') && role !== 'customer') {
+    // If the user is not an admin, redirect them to the home page (or wherever you'd like)
+    return NextResponse.redirect(new URL('/?openLogin=true', req.nextUrl).href, {
+      status: 302,
+    })
+
+  }
+  if (req.nextUrl.pathname.startsWith('/handicraft') && role !== 'handicraft') {
+    // If the user is not an admin, redirect them to the home page (or wherever you'd like)
+    return NextResponse.redirect(new URL('/?openLogin=true', req.nextUrl).href, {
+      status: 302,
+    })
+
+  }
 }
 
-export const config = {
+/* export const config = {
   matcher: '/admin/dashboard/:path*',
-}
+} */

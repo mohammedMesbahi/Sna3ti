@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import { useSelector, useDispatch } from "react-redux";
 import { updateRatedItems } from "@/reduxFolder/actions/userActions";
+import { calculateAverageRating } from "@/lib";
 import axios from "axios";
 const labels = {
   0.5: "Useless",
@@ -22,7 +23,7 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
 
-function calculateAverageRating(rates) {
+/* function calculateAverageRating(rates) {
   console.log("rates", rates);
   let sum = 0;
   if (rates.length === 0) return 0;
@@ -30,7 +31,7 @@ function calculateAverageRating(rates) {
     sum += rate.rate;
   });
   return sum / rates.length;
-}
+} */
 
 function selectRatingValue(item, connectedUser) {
   if (connectedUser && connectedUser.role === "customer") {

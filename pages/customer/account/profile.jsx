@@ -91,7 +91,7 @@ function profile() {
           >
             <NoSsr>
               <img
-                src={user.profileImage}
+                src={user?.profileImage}
                 width={200}
                 height={200}
                 alt="Picture of the author"
@@ -104,10 +104,10 @@ function profile() {
 
               <Stack direction="column" spacing={1} mt={0}>
                 <Typography variant="h5" sx={{ textAlign: "center" }}>
-                  {user.fullName}
+                  {user?.fullName}
                 </Typography>
                 <Typography variant="subtitle1" display={"inline"}>
-                  {user.email}
+                  {user?.email}
                 </Typography>
               </Stack>
             </NoSsr>

@@ -3,11 +3,11 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Paper from "@mui/material/Paper";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Rating from "@mui/material/Rating";
-
+import { NoSsr } from "@mui/material";
+import HoverRatingItem from "@/components/HoverRatingItem";
 
 import { IconButton, Stack, Typography, Box } from "@mui/material";
-function ItemCard({ item,setSelectedItem,setOpenModale }) {
-  
+function ItemCard({ item, setSelectedItem, setOpenModale }) {
   const formatDate = (date) => {
     const d = new Date(date);
     return d.toLocaleDateString("en-US", {
@@ -25,11 +25,10 @@ function ItemCard({ item,setSelectedItem,setOpenModale }) {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        width:'100%',
-        height:360
+        width: "100%",
+        height: 360,
       }}
       key={item._id}
-      
     >
       <Stack flexDirection={"row"} gap={1} alignItems={"center"}>
         <Typography fontSize={20} fontWeight="lg" flexGrow={1}>
@@ -41,7 +40,16 @@ function ItemCard({ item,setSelectedItem,setOpenModale }) {
         />
       </Stack>
 
-      <img src={item.images[0]}   style={{maxWidth:'100%', maxHeight:200,borderRadius: 10,objectFit:'cover',flexGrow:1 }} />
+      <img
+        src={item.images[0]}
+        style={{
+          maxWidth: "100%",
+          maxHeight: 200,
+          borderRadius: 10,
+          objectFit: "cover",
+          flexGrow: 1,
+        }}
+      />
 
       <Stack>
         <Typography variant="subtitle1" fontWeight={"bold"} flexGrow={1}>
@@ -49,15 +57,11 @@ function ItemCard({ item,setSelectedItem,setOpenModale }) {
         </Typography>
         <Typography variant="subtitle2">{formatDate(item.date)}</Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Rating name="read-only" value={1.5} precision={0.5} readOnly />
-          <Typography variant="subtitle2" color="text.secondary">
-            (1 reviews)
-          </Typography>
+          <NoSsr>
+            <HoverRatingItem item={item} />
+          </NoSsr>
         </Box>
-         
       </Stack>
-
-      
     </Paper>
   );
 }

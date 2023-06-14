@@ -129,10 +129,8 @@ function Items() {
                     }
                 </Swiper>
             </NoSsr>
-            <Button variant='contained' sx={{ width: { xs: '90%', sm: '40%' }, mt: 2 }}>
-                <Link href='/items' style={{ color: 'black', textDecoration: 'none' }} >
-                    View All Items
-                </Link>
+            <Button variant='contained' component={Link} href='/items' sx={{ width: { xs: '90%', sm: '40%' }, mt: 2 }}>
+                View All Items
             </Button>
 
         </Box >

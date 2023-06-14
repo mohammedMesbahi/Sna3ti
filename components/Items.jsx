@@ -351,7 +351,7 @@ function Items({ items }) {
 export default Items;
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import HoverRatingItem from "./HoverRatingItem";
+import HoverRatingItem from "@/components/HoverRatingItem";
 import {
   addItemToSavedItems,
   removeItemFromSavedItems,

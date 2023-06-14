@@ -118,7 +118,7 @@ function BookMarked() {
       .catch((err) => {
         console.log(err);
       });
-  }, [user.savedItems]);
+  }, [user?.savedItems]);
 
   if (!bookMarkedItems) {
     return (
