@@ -47,7 +47,7 @@ ItemsPage.getLayout = function getLayout(page) {
 export async function getStaticProps() {
   try {
     let res = await axios.get(
-      `${DOMAINNAME}/api/resources/items?populateHandicraft=true`
+      `${process.env.DOMAINNAME}/api/resources/items?populateHandicraft=true`
     );
     const items = res.data.data;
     return {
