@@ -105,7 +105,7 @@ function ProfileTab() {
                   readOnly
                 />
                 <Typography variant="subtitle1" display={"inline"}>
-                  ({user.rates.length > 1 ? `${user.rates.length} reviews` : `${user.rates.length} review` })
+                  ({user.rates?.length > 1 ? `${user.rates?.length} reviews` : `${user.rates?.length} review` })
                 </Typography>
               </Stack>
             </Stack>
