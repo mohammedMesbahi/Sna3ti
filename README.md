@@ -6,9 +6,9 @@
 
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/131f94d3-a45e-440e-80d3-dc0d4ebd0ba0)
 
-![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/3697c2e2-421d-47e1-aa69-773af81c65ca)
+![5](https://github.com/mohammedMesbahi/Sna3ti/assets/116631139/fe6902cf-a839-4cfb-b033-e1100d0b1464)
 
-![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/89bde440-502d-41df-8fbf-fed061f189a8)
+![6](https://github.com/mohammedMesbahi/Sna3ti/assets/116631139/ba03c552-12c7-48d2-9187-a3d3491ffcc5)
 
 ![image](https://github.com/mohammedMesbahi/MYCRAFT-frontend/assets/116631139/12470a1c-7639-4d3c-9a4d-44e944ffa67a)
 
